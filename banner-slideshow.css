@@ -1,9 +1,11 @@
 .banner-slideshow {
   position: relative;
-  width: 100%;
-  margin: 0 auto;
+  width: 70%;
+  max-width: 800px;
+  margin: 20px auto;
   overflow: hidden;
   background: #000;
+  border-radius: 10px;
 }
 
 .banner-slideshow .slides-wrapper {
@@ -25,7 +27,7 @@
   height: auto;
   display: block;
   object-fit: contain;
-  max-height: 500px;
+  max-height: 350px;
   margin: 0 auto;
 }
 

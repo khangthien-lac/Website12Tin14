@@ -227,7 +227,7 @@ def serve_static(filename):
 
 @app.route("/")
 def index():
-    return send_from_directory(PROJECT_ROOT, "Tour.html")
+    return send_from_directory(PROJECT_ROOT, "index.html")
 
 
 if __name__ == "__main__":

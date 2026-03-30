@@ -79,7 +79,7 @@ function renderCart(items, total) {
   if (!items || items.length === 0) {
     container.innerHTML =
       '<p style="text-align:center;padding:40px;font-size:18px">🛒 Giỏ hàng trống</p>' +
-      '<p style="text-align:center"><a href="Tour.html" style="color:#3498db">← Tiếp tục xem tour</a></p>';
+      '<p style="text-align:center"><a href="index.html" style="color:#3498db">← Tiếp tục xem tour</a></p>';
     if (totalDiv) totalDiv.textContent = "";
     if (checkoutDiv) checkoutDiv.style.display = "none";
     return;
@@ -199,7 +199,7 @@ function checkout() {
   html += '<p><strong>Ngày:</strong> ' + dateStr + '</p>';
   html += '</div>';
   html += '<div style="text-align:center;margin:20px 0">';
-  html += '<a href="Tour.html" style="display:inline-block;background:#3498db;color:#fff;padding:12px 30px;border-radius:6px;text-decoration:none;font-weight:bold">← Tiếp tục mua tour</a>';
+  html += '<a href="index.html" style="display:inline-block;background:#3498db;color:#fff;padding:12px 30px;border-radius:6px;text-decoration:none;font-weight:bold">← Tiếp tục mua tour</a>';
   html += '</div>';
 
   container.innerHTML = html;
