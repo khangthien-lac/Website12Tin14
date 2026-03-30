@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GIỎ HÀNG - VS2T Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="min-height:100vh; display:flex; flex-direction:column;">
+<header id="atIdViewHeader" class="site-header">
+<div class="header-wrapper">
+<nav class="site-nav">
+<a class="site-logo-link" href="Tour.html">
+<img src="d4210c45aec02871569eec3c329acee3.jpg" class="site-logo-img" alt="VS2T Logo">
+</a>
+<a class="site-hotline" href="tel:19003667">HOTLINE: 19003667</a>
+<ul class="nav-menu">
+<li><a class="nav-link" href="Tour.html">Trang chủ</a></li>
+<li class="nav-dropdown">
+<a class="nav-link" href="Tour miền Bắc.html">Tour miền Bắc</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-link" href="Hà Nội.html">Hà Nội</a></li>
+<li><a class="dropdown-link" href="Hạ Long.html">Hạ Long</a></li>
+<li><a class="dropdown-link" href="Hà Giang.html">Hà Giang</a></li>
+</ul>
+</li>
+<li class="nav-dropdown">
+<a class="nav-link" href="Tour miền Trung.html">Tour miền Trung</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-link" href="Đà Nẵng.html">Đà Nẵng</a></li>
+<li><a class="dropdown-link" href="Huế.html">Huế</a></li>
+<li><a class="dropdown-link" href="Phan Thiết.html">Phan Thiết</a></li>
+</ul>
+</li>
+<li class="nav-dropdown">
+<a class="nav-link" href="Tour miền Nam.html">Tour miền Nam</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-link" href="Sài Gòn.html">Sài Gòn</a></li>
+<li><a class="dropdown-link" href="Vũng Tàu.html">Vũng Tàu</a></li>
+<li><a class="dropdown-link" href="Tây Ninh.html">Tây Ninh</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="Vé máy bay.html">Vé máy bay</a></li>
+<li><a class="nav-link" href="Đặt phòng.html">Đặt phòng</a></li>
+<li><a class="nav-link" href="Mua sắm.html">Mua sắm</a></li>
+<li><a class="nav-link" href="Giới thiệu.html">Giới thiệu</a></li>
+<li><a class="nav-link nav-cart" href="GIỎ HÀNG.html">🛒 Giỏ hàng</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+  <main class="main-content" style="flex:1; padding:20px;">
+    <section id="cart-section" class="cart-section">
+      <h1 style="text-align:center; color:var(--heading-color); margin-bottom:16px;">GIỎ HÀNG</h1>
+      <div id="cart-items" style="min-height:120px; border:1px solid #eee; padding:12px; border-radius:8px; background:#fff;"></div>
+      <div id="cart-total" style="text-align:right; padding:12px 0; font-weight:700;"></div>
+      <button id="clearCart" style="display:block; margin:12px auto; padding:12px 28px; border-radius:20px; background:#e11d48; color:white; border:none; cursor:pointer;">Xóa giỏ hàng</button>
+    </section>
+  </main>
+
+  <footer class="section-footer">
+    CÔNG TY CỔ PHẦN TRUYỀN THÔNG VS2T
+    Địa chỉ: 235 Nguyễn Văn Cừ, phường Chợ Quán, TP.HCM
+    Điện thoại: 0936 676767 | Hotline: 1900 3667
+    Website: vs2t.com.vn | Email: info@vs2tcom.vn
+  </footer>
+
+<script>
+      function formatVND(n){
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(n);
+      }
+
+      function renderCart(){
+        const cart = JSON.parse(localStorage.getItem('flightCart') || '[]');
+        const container = document.getElementById('cart-items');
+        const totalEl = document.getElementById('cart-total');
+        container.innerHTML = '';
+        if(!cart.length){
+          container.innerHTML = '<div style="padding:8px 0; text-align:center;">Giỏ hàng trống.</div>';
+          totalEl.textContent = '';
+          return;
+        }
+        let grandTotal = 0;
+        cart.forEach((it, idx) => {
+          const price = Number(it.price) || 0;
+          const adults = Number(it.adults) || 1;
+          const children = Number(it.children) || 0;
+          const infants = Number(it.infants) || 0;
+          
+          // Calculate item total with different rates for adults/children/infants
+          const adultTotal = price * adults;
+          const childTotal = price * children * 0.75;
+          const infantTotal = price * infants * 0.5;
+          const itemTotal = adultTotal + childTotal + infantTotal;
+          
+          grandTotal += itemTotal;
+          const row = document.createElement('div');
+          row.style.display = 'flex'; row.style.justifyContent = 'space-between'; row.style.padding = '6px 0';
+          row.innerHTML = `
+            <div style="flex: 1; min-width: 200px;">
+              <strong>${it.origin} → ${it.destination}</strong><br>
+              <small class="code">[${it.flight_code||''}]</small><br>
+              <div>HK: ${adults} adult${adults>1?'s':''} ${children>0? ', ' + children + ' trẻ em':''} ${infants>0? ', ' + infants + ' em bé':''}</div>
+            </div>
+            <div style="text-align: right;">
+              <strong>${formatVND(itemTotal)}</strong><br>
+              <small>(${adults}× + ${children}×0.75 + ${infants}×0.5)</small>
+            </div>
+            <button data-idx="${idx}" style="border:0; background:#e11d48; color:white; padding:4px 8px; border-radius:6px; cursor:pointer;">Xóa</button>
+          `;
+          container.appendChild(row);
+        });
+        totalEl.textContent = 'Tổng thanh toán: ' + formatVND(grandTotal);
+        container.querySelectorAll('button').forEach(b => b.addEventListener('click', e => {
+          if(confirm('Xóa vé này khỏi giỏ hàng?')){
+            const idx = Number(e.currentTarget.getAttribute('data-idx'));
+            const arr = JSON.parse(localStorage.getItem('flightCart') || '[]');
+            arr.splice(idx, 1);
+            localStorage.setItem('flightCart', JSON.stringify(arr));
+            renderCart();
+          }
+        }));
+      }
+      function loadCart(){ renderCart(); }
+      document.addEventListener('DOMContentLoaded', loadCart);
+      // Listen for changes from other tabs/windows
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'flightCart') {
+          renderCart();
+        }
+      });
+</script>
+</body>
+</html>

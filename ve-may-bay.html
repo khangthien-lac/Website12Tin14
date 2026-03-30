@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ve May Bay - MVP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Ve may bay - MVP</h1>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Chon tuyen bay</h2>
+      <form id="flightSearch" onsubmit="return false;">
+        <div class="field">
+          <label for="originProv">Origin Province</label>
+          <select id="originProv" aria-label="Origin Province">
+            <option value="">Chon tỉnh/thanh</option>
+            <option value="Ha Noi">Ha Noi</option>
+            <option value="Ho Chi Minh">Ho Chi Minh</option>
+            <option value="Da Nang">Da Nang</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="destProv">Destination Province</label>
+          <select id="destProv" aria-label="Destination Province">
+            <option value="">Chon tỉnh/thanh</option>
+            <option value="Ha Noi">Ha Noi</option>
+            <option value="Ho Chi Minh">Ho Chi Minh</option>
+            <option value="Da Nang">Da Nang</option>
+          </select>
+        </div>
+        <div id="routeWrap" class="route-wrap" style="display:none;">
+          <div id="routeInfo" class="route-info"></div>
+          <div class="passengers">
+            <div class="field">
+              <label for="adults">Adults</label>
+              <input type="number" id="adults" min="1" step="1" value="1" />
+            </div>
+            <div class="field">
+              <label for="children">Children</label>
+              <input type="number" id="children" min="0" step="1" value="0" />
+            </div>
+            <div class="field">
+              <label for="infants">Infants</label>
+              <input type="number" id="infants" min="0" step="1" value="0" />
+            </div>
+          </div>
+          <button type="button" id="btnFindRoute" class="btn" style="margin-right:8px;">Tim tuyen</button><button type="button" id="btnBook" class="btn" disabled>Dat ve</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" aria-live="polite" style="display:none;"></div>
+
+  <script>
+    // Inline data (frontend only)
+    const FLIGHTS = [
+      { id: 1, code: 'VN01', originProv: 'Ha Noi', destinationProv: 'Da Nang', origin: 'Ha Noi', destination: 'Da Nang', price: 1200000 },
+      { id: 2, code: 'VN02', originProv: 'Ho Chi Minh', destinationProv: 'Da Nang', origin: 'Ho Chi Minh', destination: 'Da Nang', price: 900000 },
+      { id: 3, code: 'VN03', originProv: 'Ha Noi', destinationProv: 'Ho Chi Minh', origin: 'Ha Noi', destination: 'Ho Chi Minh', price: 1500000 }
+    ];
+
+    function findCheapest(originProv, destProv){
+      if (!originProv || !destProv) return null;
+      const list = FLIGHTS.filter(f => f.originProv === originProv && f.destinationProv === destProv);
+      if (list.length === 0) return null;
+      return list.reduce((best, f) => (f.price < best.price ? f : best), list[0]);
+    }
+
+    function formatVND(n){
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(n);
+    }
+
+    function showToast(msg){
+      const el = document.getElementById('toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.style.display = 'block';
+      el.style.opacity = '1';
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => { el.style.display = 'none'; }, 300);
+      }, 1600);
+    }
+
+    function prepareAndShowRoute(){
+      const originProv = document.getElementById('originProv').value;
+      const destProv = document.getElementById('destProv').value;
+      const wrap = document.getElementById('routeWrap');
+      const info = document.getElementById('routeInfo');
+      const btn = document.getElementById('btnBook');
+      if (!originProv || !destProv){
+        wrap.style.display = 'none';
+        btn.disabled = true;
+        info.textContent = '';
+        return;
+      }
+      const route = findCheapest(originProv, destProv);
+      if (route){
+        info.textContent = `Tuyen: ${route.origin} -> ${route.destination} | Gia tham khao: ${formatVND(route.price)}`;
+        wrap.style.display = 'block';
+        btn.disabled = false;
+        btn.dataset.routeCode = route.code;
+        btn.dataset.originProv = originProv;
+        btn.dataset.destProv = destProv;
+        btn.dataset.price = route.price;
+        btn.dataset.originCity = route.origin;
+        btn.dataset.destinationCity = route.destination;
+      } else {
+        info.textContent = 'Khong tim thay tuyen phu hop.';
+        wrap.style.display = 'block';
+        btn.disabled = true;
+      }
+    }
+
+    // Adults validation
+    document.getElementById('adults').addEventListener('input', () => {
+      const v = parseInt(document.getElementById('adults').value, 10);
+      if (Number.isNaN(v) || v < 1){
+        document.getElementById('adults').value = '1';
+      }
+    });
+
+    document.getElementById('originProv').addEventListener('change', updateRouteUI);
+    document.getElementById('destProv').addEventListener('change', updateRouteUI);
+
+    document.getElementById('btnBook').addEventListener('click', () => {
+      const originProv = document.getElementById('originProv').value;
+      const destProv = document.getElementById('destProv').value;
+      const routeCode = document.getElementById('btnBook').dataset.routeCode;
+      const route = FLIGHTS.find(f => f.code === routeCode) || null;
+      if (!route){
+        showToast('Vui long chon tuyen phu hop.');
+        return;
+      }
+      const adults = parseInt(document.getElementById('adults').value || '1', 10);
+      const children = parseInt(document.getElementById('children').value || '0', 10);
+      const infants = parseInt(document.getElementById('infants').value || '0', 10);
+      if (adults < 1){
+        showToast('So luong nguoi lon toi thieu 1.');
+        return;
+      }
+      const item = {
+        id: Date.now(),
+        flight_code: route.code,
+        originProv,
+        destProv,
+        origin: route.origin,
+        destination: route.destination,
+        price: route.price,
+        adults,
+        children,
+        infants,
+        timestamp: new Date().toISOString()
+      };
+      let cart = [];
+      try {
+        cart = JSON.parse(localStorage.getItem('flightCart') || '[]');
+      } catch (e){ cart = []; }
+      cart.push(item);
+      localStorage.setItem('flightCart', JSON.stringify(cart));
+      showToast('Da them ve vao gio hang');
+    });
+
+    updateRouteUI();
+  </script>
+</body>
+</html>

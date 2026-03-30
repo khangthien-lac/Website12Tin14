@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batch Export Tours</title>
+  <style>
+    body{font-family:Arial, sans-serif;background:#f7d8d8;margin:0;padding:20px}
+    h1{text-align:center;margin:10px 0 20px 0;color:#2c2c2c}
+    .container{max-width:1100px;margin:0 auto}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #ddd}
+    th,td{padding:8px 10px;border-bottom:1px solid #eee;font-size:12px}
+    th{background:#f4f4f4;text-align:left}
+    textarea{width:100%;min-height:60px;padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-family:monospace;font-size:12px}
+    .row{border-bottom:1px solid #eee}
+    .controls{display:flex;gap:10px;align-items:center;margin:12px 0}
+    button{padding:9px 12px;border-radius:6px;border:0;background:#2b8cff;color:#fff;cursor:pointer}
+    button.secondary{background:#6c757d}
+    button.danger{background:#d9534f}
+    #delimiter{ padding:6px 8px;border-radius:4px;border:1px solid #ccc; }
+    #csvPreview{min-height:120px;background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px;font-family:monospace;white-space:pre-wrap}
+  </style>
+  </head>
+  <body>
+  <h1>Batch Export Tours</h1>
+  <div class="container">
+    <div class="panel" style="width:100%;background:#fff;padding:0;border:1px solid #ddd;border-radius:8px;overflow:hidden">
+      <div style="padding:12px;background:#f9f9f9;border-bottom:1px solid #eee;">
+        <label for="delimiter">Delimeter</label>
+        <select id="delimiter" aria-label="Delimiter" style="margin-left:8px;width:120px;">
+          <option value=",">Comma (,)</option>
+          <option value="|">Pipe (|)</option>
+        </select>
+      </div>
+      <div id="tableWrap" style="padding:12px;overflow:auto"></div>
+      <div class="controls" style="padding:12px;">
+        <button id="btnExport" onclick="exportCSV()">Export CSV</button>
+        <button class="secondary" onclick="copyCSV()">Copy CSV</button>
+        <button onclick="downloadCSV()">Download CSV</button>
+      </div>
+      <div style="padding:12px;">
+        <div id="csvPreview" aria-label="CSV preview"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Load tours and build editable rows
+    fetch('tours.json')
+      .then(r => r.json())
+      .then(list => {
+        const wrap = document.getElementById('tableWrap');
+        const tbl = document.createElement('table');
+        tbl.innerHTML = `
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tên tour</th>
+              <th>HL</th>
+              <th>Incl</th>
+              <th>Excl</th>
+              <th>Notes</th>
+            </tr>
+          </thead>`;
+        const tbody = document.createElement('tbody');
+        list.forEach(t => {
+          const tr = document.createElement('tr');
+          tr.className = 'row';
+          tr.innerHTML = `
+            <td>${t.id}</td>
+            <td style="min-width:240px;">${t.name}</td>
+            <td><textarea placeholder="HL" data-id="hl"></textarea></td>
+            <td><textarea placeholder="Incl" data-id="incl"></textarea></td>
+            <td><textarea placeholder="Excl" data-id="excl"></textarea></td>
+            <td><textarea placeholder="Notes" data-id="notes"></textarea></td>`;
+          tbody.appendChild(tr);
+        });
+        tbl.appendChild(tbody);
+        wrap.appendChild(tbl);
+      })
+      .catch(() => {
+        wrap.innerHTML = '<p>Không load được tours.json. Đảm bảo đang chạy server hoặc file tĩnh ở gốc.</p>';
+      });
+
+    function getRows() {
+      const rows = [];
+      const trs = document.querySelectorAll('#tableWrap table tbody tr');
+      trs.forEach(tr => {
+        const id = tr.cells[0].innerText.trim();
+        const hl = tr.querySelector('textarea[data-id="hl"]').value.trim();
+        const incl = tr.querySelector('textarea[data-id="incl"]').value.trim();
+        const excl = tr.querySelector('textarea[data-id="excl"]').value.trim();
+        const notes = tr.querySelector('textarea[data-id="notes"]').value.trim();
+        rows.push({id, hl, incl, excl, notes});
+      });
+      return rows;
+    }
+
+    function exportCSV() {
+      const delim = document.getElementById('delimiter').value;
+      const rows = getRows();
+      const header = ['id','hl','incl','excl','notes'];
+      const csv = [header.join(delim)];
+      rows.forEach(r => {
+        const esc = [r.id, r.hl, r.incl, r.excl, r.notes].map(v => {
+          const s = (v ?? '').toString().replace(/"/g,'""');
+          if (s.includes(delim) || s.includes('\n')) return '"' + s + '"';
+          return s;
+        }).join(delim);
+        csv.push(esc);
+      });
+      const text = csv.join('\n');
+      const preview = document.getElementById('csvPreview');
+      preview.textContent = text;
+      // auto-copy
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+
+    function copyCSV() {
+      const text = document.getElementById('csvPreview').textContent;
+      if (text) {
+        navigator.clipboard.writeText(text).then(()=> alert('CSV copied'));
+      } else {
+        exportCSV();
+      }
+    }
+
+    function downloadCSV() {
+      const text = document.getElementById('csvPreview').textContent;
+      if (!text) {
+        exportCSV();
+        return;
+      }
+      const blob = new Blob([text], {type: 'text/csv;charset=utf-8;'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tours_batch.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+{
+  "10942": {
+    "name": "Hà Nội - Sài Gòn - Vũng Tàu - KDL Đại Nam",
+    "waypoints": [
+      {"name": "Hà Nội", "lat": 21.0285, "lng": 105.8542},
+      {"name": "Sài Gòn", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Vũng Tàu", "lat": 10.3460, "lng": 107.0843},
+      {"name": "KDL Đại Nam", "lat": 11.0769, "lng": 106.6250}
+    ]
+  },
+  "11338": {
+    "name": "TP.HCM - Suối Khoáng Nóng Bình Châu",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Suối Khoáng Nóng Bình Châu", "lat": 10.5533, "lng": 107.3833}
+    ]
+  },
+  "13579": {
+    "name": "Hà Nội - Hà Giang - Quản Bạ - Mã Pí Lèng - Lũng Cú",
+    "waypoints": [
+      {"name": "Hà Nội", "lat": 21.0285, "lng": 105.8542},
+      {"name": "Hà Giang", "lat": 22.8026, "lng": 104.9784},
+      {"name": "Quản Bạ", "lat": 23.0667, "lng": 104.9833},
+      {"name": "Đèo Mã Pí Lèng", "lat": 23.2250, "lng": 105.1167},
+      {"name": "Lũng Cú", "lat": 23.3583, "lng": 105.3167}
+    ]
+  },
+  "18875": {
+    "name": "TP.HCM - Phú Quốc",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Phú Quốc", "lat": 10.2899, "lng": 103.9840}
+    ]
+  },
+  "18910": {
+    "name": "Sài Gòn City Tour",
+    "waypoints": [
+      {"name": "Bến Nhà Rồng", "lat": 10.7703, "lng": 106.7082},
+      {"name": "Nhà Thờ Đức Bà", "lat": 10.7798, "lng": 106.6990},
+      {"name": "Bưu Điện Trung Tâm", "lat": 10.7800, "lng": 106.6997},
+      {"name": "Dinh Độc Lập", "lat": 10.7769, "lng": 106.6958},
+      {"name": "Chợ Bến Thành", "lat": 10.7722, "lng": 106.6980}
+    ]
+  },
+  "18912": {
+    "name": "TP.HCM - Địa Đạo Củ Chi",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Địa Đạo Củ Chi", "lat": 11.0514, "lng": 106.4931}
+    ]
+  },
+  "18920": {
+    "name": "TP.HCM - Mỹ Tho - Bến Tre - Cù Lao Thới Sơn - Cồn Phùng",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Mỹ Tho", "lat": 10.3600, "lng": 106.3600},
+      {"name": "Bến Tre", "lat": 10.2433, "lng": 106.3756},
+      {"name": "Cù Lao Thới Sơn", "lat": 10.3500, "lng": 106.3500}
+    ]
+  },
+  "18921": {
+    "name": "TP.HCM - Tây Ninh - Núi Bà Đen - Đỉnh Vân Sơn",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Tây Ninh", "lat": 11.3100, "lng": 106.0980},
+      {"name": "Núi Bà Đen", "lat": 11.3753, "lng": 106.1131}
+    ]
+  },
+  "18941": {
+    "name": "TP.HCM - Mỹ Tho - Cần Thơ - Châu Đốc - Bạc Liêu - Sóc Trăng",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Mỹ Tho", "lat": 10.3600, "lng": 106.3600},
+      {"name": "Cần Thơ", "lat": 10.0452, "lng": 105.7469},
+      {"name": "Châu Đốc", "lat": 10.7017, "lng": 105.1261},
+      {"name": "Bạc Liêu", "lat": 9.2940, "lng": 105.7215},
+      {"name": "Sóc Trăng", "lat": 9.6025, "lng": 105.9739}
+    ]
+  },
+  "18946": {
+    "name": "TP.HCM - Cần Thơ - Cà Mau - Đất Mũi - Tây Ninh",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Cần Thơ", "lat": 10.0452, "lng": 105.7469},
+      {"name": "Cà Mau", "lat": 9.1768, "lng": 105.1524},
+      {"name": "Đất Mũi", "lat": 8.6222, "lng": 104.8333},
+      {"name": "Tây Ninh", "lat": 11.3100, "lng": 106.0980}
+    ]
+  },
+  "18949": {
+    "name": "TP.HCM - Phan Thiết - Sài Gòn",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Phan Thiết", "lat": 10.9289, "lng": 108.1021}
+    ]
+  },
+  "18978": {
+    "name": "TP.HCM - Tây Ninh - Núi Bà Đen",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Tây Ninh", "lat": 11.3100, "lng": 106.0980},
+      {"name": "Núi Bà Đen", "lat": 11.3753, "lng": 106.1131}
+    ]
+  },
+  "19000": {
+    "name": "Hà Nội - Hà Giang - Quản Bạ - Sông Nho Quế",
+    "waypoints": [
+      {"name": "Hà Nội", "lat": 21.0285, "lng": 105.8542},
+      {"name": "Hà Giang", "lat": 22.8026, "lng": 104.9784},
+      {"name": "Quản Bạ", "lat": 23.0667, "lng": 104.9833},
+      {"name": "Sông Nho Quế", "lat": 23.2000, "lng": 105.1000}
+    ]
+  },
+  "19012": {
+    "name": "Huế - Đầm Lập An - La Vang - Động Thiên Đường - Bà Nà - Hội An - Đà Nẵng",
+    "waypoints": [
+      {"name": "Huế", "lat": 16.4637, "lng": 107.5909},
+      {"name": "Đầm Lập An", "lat": 16.3833, "lng": 107.8667},
+      {"name": "La Vang", "lat": 16.7167, "lng": 107.2167},
+      {"name": "Động Thiên Đường", "lat": 17.5461, "lng": 106.1283},
+      {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.9890},
+      {"name": "Hội An", "lat": 15.8801, "lng": 108.3380},
+      {"name": "Đà Nẵng", "lat": 16.0544, "lng": 108.2022}
+    ]
+  },
+  "19021": {
+    "name": "Huế - Bà Nà - Mikazuki - Hội An",
+    "waypoints": [
+      {"name": "Huế", "lat": 16.4637, "lng": 107.5909},
+      {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.9890},
+      {"name": "Mikazuki Water Park", "lat": 16.1000, "lng": 108.2500},
+      {"name": "Hội An", "lat": 15.8801, "lng": 108.3380}
+    ]
+  },
+  "19022": {
+    "name": "Đà Nẵng - Huế - Bà Nà - Hội An - Làng Hương Thủy Xuân - Sơn Trà",
+    "waypoints": [
+      {"name": "Đà Nẵng", "lat": 16.0544, "lng": 108.2022},
+      {"name": "Huế", "lat": 16.4637, "lng": 107.5909},
+      {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.9890},
+      {"name": "Hội An", "lat": 15.8801, "lng": 108.3380},
+      {"name": "Làng Hương Thủy Xuân", "lat": 16.4333, "lng": 107.5500},
+      {"name": "Bán Đảo Sơn Trà", "lat": 16.1061, "lng": 108.2628}
+    ]
+  },
+  "19036": {
+    "name": "TP.HCM - Linh Địa Đức Mẹ Tà Pao - Đảo Bình Hưng",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Linh Địa Tà Pao", "lat": 11.2167, "lng": 108.1833},
+      {"name": "Đảo Bình Hưng", "lat": 11.8167, "lng": 109.1833}
+    ]
+  },
+  "19062": {
+    "name": "Huế - Bà Nà - Mikazuki - Hội An",
+    "waypoints": [
+      {"name": "Huế", "lat": 16.4637, "lng": 107.5909},
+      {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.9890},
+      {"name": "Mikazuki Water Park", "lat": 16.1000, "lng": 108.2500},
+      {"name": "Hội An", "lat": 15.8801, "lng": 108.3380}
+    ]
+  },
+  "19066": {
+    "name": "Sapa - Fansipan - Hà Nội - Hạ Long - Ninh Bình - Đà Nẵng - Bà Nà - Hội An - Phong Nha - Huế",
+    "waypoints": [
+      {"name": "Sapa", "lat": 22.3364, "lng": 103.8438},
+      {"name": "Fansipan", "lat": 22.3031, "lng": 103.7718},
+      {"name": "Hà Nội", "lat": 21.0285, "lng": 105.8542},
+      {"name": "Hạ Long", "lat": 20.9101, "lng": 107.1839},
+      {"name": "Ninh Bình", "lat": 20.2506, "lng": 105.9745},
+      {"name": "Đà Nẵng", "lat": 16.0544, "lng": 108.2022},
+      {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.9890},
+      {"name": "Hội An", "lat": 15.8801, "lng": 108.3380},
+      {"name": "Động Phong Nha", "lat": 17.5961, "lng": 106.1117},
+      {"name": "Huế", "lat": 16.4637, "lng": 107.5909}
+    ]
+  },
+  "19067": {
+    "name": "TP.HCM - Cát Vàng - Mũi Né - Hòn Rơm",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Mũi Né", "lat": 10.9326, "lng": 108.2869},
+      {"name": "Hòn Rơm", "lat": 10.9500, "lng": 108.3167}
+    ]
+  },
+  "19068": {
+    "name": "Huế - Bà Nà - Hội An - Động Phong Nha",
+    "waypoints": [
+      {"name": "Huế", "lat": 16.4637, "lng": 107.5909},
+      {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.9890},
+      {"name": "Hội An", "lat": 15.8801, "lng": 108.3380},
+      {"name": "Động Phong Nha", "lat": 17.5961, "lng": 106.1117}
+    ]
+  },
+  "19069": {
+    "name": "TP.HCM - Đảo Phú Quý",
+    "waypoints": [
+      {"name": "TP. Hồ Chí Minh", "lat": 10.8231, "lng": 106.6297},
+      {"name": "Phan Thiết", "lat": 10.9289, "lng": 108.1021},
+      {"name": "Đảo Phú Quý", "lat": 10.5333, "lng": 108.9500}
+    ]
+  },
+  "19090": {
+    "name": "Hà Nội - Hạ Long - Ninh Bình - Lào Cai - Sapa - Fansipan",
+    "waypoints": [
+      {"name": "Hà Nội", "lat": 21.0285, "lng": 105.8542},
+      {"name": "Hạ Long", "lat": 20.9101, "lng": 107.1839},
+      {"name": "Ninh Bình", "lat": 20.2506, "lng": 105.9745},
+      {"name": "Lào Cai", "lat": 22.4856, "lng": 103.9707},
+      {"name": "Sapa", "lat": 22.3364, "lng": 103.8438},
+      {"name": "Fansipan", "lat": 22.3031, "lng": 103.7718}
+    ]
+  },
+  "19567": {
+    "name": "Hà Nội - Vịnh Hạ Long",
+    "waypoints": [
+      {"name": "Hà Nội", "lat": 21.0285, "lng": 105.8542},
+      {"name": "Hạ Long", "lat": 20.9101, "lng": 107.1839}
+    ]
+  },
+  "19688": {
+    "name": "Hà Nội - Sapa - Fansipan",
+    "waypoints": [
+      {"name": "Hà Nội", "lat": 21.0285, "lng": 105.8542},
+      {"name": "Lào Cai", "lat": 22.4856, "lng": 103.9707},
+      {"name": "Sapa", "lat": 22.3364, "lng": 103.8438},
+      {"name": "Fansipan", "lat": 22.3031, "lng": 103.7718}
+    ]
+  }
+}

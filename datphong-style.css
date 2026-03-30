@@ -1,0 +1,37 @@
+@import url('style.css');
+
+.section-hero { min-height: 420px; }
+.section-hero.two-column-hero { display: flex; }
+.section-hero.two-column-hero > .hero-left { flex: 1; }
+.section-hero.two-column-hero > .hero-right { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; background: #fff; color: #111; }
+.section-hero.two-column-hero .text-heading { color: var(--heading-color); }
+.section-content-block { padding: 20px 16px; max-width: 1200px; margin: 0 auto; }
+.section-content-block .content-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+.section-content-block .grid-column { flex: 1 1 30%; min-width: 240px; }
+.section-content-block .content-image { border-radius: 8px; overflow: hidden; position: relative; }
+.section-content-block .image-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 8px; background: rgba(0,0,0,.25); color: #fff; text-align: left; }
+
+.nav-tiles { background: var(--bg-theme); }
+/* Navigation tiles under banner (desktop-first) */
+.nav-tiles { background: var(--bg-theme); border-top: 1px solid #e3e6ea; border-bottom: 1px solid #e3e6ea; padding: 18px 0; clear: both; }
+.nav-tiles .tiles-grid { width: 100%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; padding: 0 16px; box-sizing: border-box; }
+.nav-tiles .tile { text-decoration: none; display: flex; align-items: center; padding: 12px; border-radius: 8px; background: #fff; color: #333; box-shadow: 0 2px 6px rgba(0,0,0,.05); }
+.nav-tiles .tile-icon { width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 20px; }
+.nav-tiles .tile-label { font-weight: 700; }
+
+/* Quick icons row beneath navigation (optional visual balance) */
+.quick-icons { background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 14px 0; }
+.quick-icons .quick-grid { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; width: min(1200px, 90%); margin: 0 auto; }
+.quick-icons .quick-item { display: flex; flex-direction: column; align-items: center; width: 140px; text-align: center; }
+.quick-icons .quick-icon { width: 48px; height: 48px; border-radius: 50%; background: #f4f6fb; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 6px; }
+.quick-icons .quick-label { font-size: 12px; font-weight: 700; color: #333; }
+
+/* Modal dialog styles for room details (popup) */
+.modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.5); z-index: 1000; }
+.modal-content { background: #fff; border-radius: 8px; padding: 20px; max-width: 520px; width: 90%; position: relative; }
+.modal-close { position: absolute; top: 8px; right: 12px; font-size: 24px; cursor: pointer; }
+.room-card { cursor: pointer; }
+.btn { display:inline-block; }
+.section-content-block { position: relative; }
+.room-card:hover { transform: translateY(-2px); }
+@import url('theme.css');

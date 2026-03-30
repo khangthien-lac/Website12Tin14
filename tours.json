@@ -1,0 +1,252 @@
+[
+  {
+    "id": "10942",
+    "name": "DU LỊCH VŨNG TÀU MÙA HÈ KHỞI HÀNH TỪ HÀ NỘI",
+    "price": 3500000,
+    "duration": "3N2Đ",
+    "departure": "Hà Nội",
+    "transport": "Máy bay",
+    "image": "10942/0505f6d9eee67282b9a93c1ae752cbd4.jpg",
+    "shortDesc": "Tour Vũng Tàu mùa hè khởi hành từ Hà Nội, trải nghiệm biển xanh cát trắng."
+  },
+  {
+    "id": "11338",
+    "name": "DU LỊCH SUỐI KHOÁNG NÓNG BÌNH CHÂU",
+    "price": 2200000,
+    "duration": "2N1Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "11338/694e6509a271a65f2b4813a52b21acfb.jpg",
+    "shortDesc": "Thư giãn tại suối khoáng nóng Bình Châu, tận hưởng thiên nhiên trong lành."
+  },
+  {
+    "id": "13579",
+    "name": "Du lịch Miền Bắc - Đông Bắc - Hà Giang 6 ngày mùa hoa Tam Giác Mạch",
+    "price": 5800000,
+    "duration": "6N5Đ",
+    "departure": "Hà Nội",
+    "transport": "Xe du lịch",
+    "image": "13579/27a6cb12ad3ff4f81617bc98352232ad.jpg",
+    "shortDesc": "Khám phá Hà Giang mùa hoa tam giác mạch, cột cờ Lũng Cú, đèo Mã Pí Lèng."
+  },
+  {
+    "id": "18875",
+    "name": "TOUR MIỀN NAM MÙA ĐÔNG 4N3Đ | HỒ CHÍ MINH - ĐẢO NGỌC PHÚ QUỐC",
+    "price": 4500000,
+    "duration": "4N3Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Máy bay",
+    "image": "18875/5c01c4b6290db69439e135d4ef1dc4a2.jpg",
+    "shortDesc": "Khám phá đảo ngọc Phú Quốc - thiên đường nghỉ dưỡng phía Nam."
+  },
+  {
+    "id": "18910",
+    "name": "TOUR SÀI GÒN - CITY TOUR KHÁM PHÁ THÀNH PHỐ HOA LỆ",
+    "price": 1500000,
+    "duration": "1N",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18910/519a0f1012df81923acc5b02d5bca150.jpg",
+    "shortDesc": "City tour Sài Gòn khám phá các điểm nổi tiếng: Bến Nhà Rồng, Nhà thờ Đức Bà, Bưu điện..."
+  },
+  {
+    "id": "18912",
+    "name": "TOUR MIỀN NAM - TOUR ĐỊA ĐẠO CỦ CHI",
+    "price": 1200000,
+    "duration": "1N",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18912/3d0d72ae18141eab52ab896bb46d8bd4.jpg",
+    "shortDesc": "Tham quan Địa đạo Củ Chi - di tích lịch sử hào hùng của dân tộc."
+  },
+  {
+    "id": "18920",
+    "name": "TOUR MIỀN NAM MỸ THO - BẾN TRE - CÙ LAO THỚI SƠN - CỒN PHỤNG",
+    "price": 1800000,
+    "duration": "1N",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18920/0d38d8428e5800d1ebd37484dc6fa94f.jpg",
+    "shortDesc": "Trải nghiệm miền Tây sông nước: Mỹ Tho, Bến Tre, Cù Lao Thới Sơn."
+  },
+  {
+    "id": "18921",
+    "name": "TOUR TÂY NINH NÚI BÀ - ĐỈNH VÂN SƠN - BUFFET NĂM CHÂU",
+    "price": 1600000,
+    "duration": "1N",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18921/415355f797030316619d5de787063ec4.jpg",
+    "shortDesc": "Khám phá Núi Bà Đen Tây Ninh, đỉnh Vân Sơn và thưởng thức buffet Năm Châu."
+  },
+  {
+    "id": "18941",
+    "name": "TOUR MIỀN TÂY 4N3Đ | MỸ THO - CẦN THƠ - CHÂU ĐỐC - BẠC LIÊU - SÓC TRĂNG",
+    "price": 4200000,
+    "duration": "4N3Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18941/57860120c1fe62870222ee8b51619aab.jpg",
+    "shortDesc": "Hành trình khám phá miền Tây sông nước qua nhiều tỉnh thành."
+  },
+  {
+    "id": "18946",
+    "name": "TOUR MIỀN TÂY TẾT NGUYÊN ĐÁN 5N4Đ | CẦN THƠ - CÀ MAU - ĐẤT MŨI",
+    "price": 5500000,
+    "duration": "5N4Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18946/4e0214774602a1ef0a3f8d5c89e69e40.jpg",
+    "shortDesc": "Tour Tết miền Tây: Cần Thơ, Cà Mau, Đất Mũi, Tây Ninh."
+  },
+  {
+    "id": "18949",
+    "name": "TOUR PHAN THIẾT TẾT NGUYÊN ĐÁN PHAN THIẾT - SÀI GÒN",
+    "price": 3200000,
+    "duration": "3N2Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18949/09c3f04ff23e69d04ca2ac2a895d2e58.jpg",
+    "shortDesc": "Tour Tết Phan Thiết - nghỉ dưỡng biển, đồi cát bay, làng chài."
+  },
+  {
+    "id": "18978",
+    "name": "TOUR TÂY NINH TẾT NGUYÊN ĐÁN 1N NÚI BÀ - ĐỈNH VÂN SƠN - BUFFET NĂM CHÂU",
+    "price": 1800000,
+    "duration": "1N",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "18978/054603683fe4cc79d8af60694f6a38a4.jpg",
+    "shortDesc": "Tour Tết Tây Ninh 1 ngày: Núi Bà Đen, đỉnh Vân Sơn, buffet."
+  },
+  {
+    "id": "19000",
+    "name": "TOUR ĐÔNG BẮC MÙA XUÂN 4N3Đ | HÀ GIANG - QUẢN BẠ - SÔNG NHO QUẾ",
+    "price": 4800000,
+    "duration": "4N3Đ",
+    "departure": "Hà Nội",
+    "transport": "Xe du lịch",
+    "image": "19000/7c1446040593a5f5cfbc51a1c596a5c5.jpg",
+    "shortDesc": "Khám phá Đông Bắc mùa xuân: Hà Giang, Quản Bạ, sông Nho Quế."
+  },
+  {
+    "id": "19012",
+    "name": "Huế - Đầm Lập An - La Vang - Động Thiên Đường - KDL Bà Nà - Cầu Vàng - Sơn Trà - Hội An - Đà Nẵng",
+    "price": 6200000,
+    "duration": "5N4Đ",
+    "departure": "Hà Nội",
+    "transport": "Máy bay",
+    "image": "19012/125000d0fbab08f68489fbece9d5302b.jpg",
+    "shortDesc": "Liên tuyến Huế - Đà Nẵng: Bà Nà, Cầu Vàng, Hội An, Động Thiên Đường."
+  },
+  {
+    "id": "19021",
+    "name": "TOUR HUẾ LỄ 30/4 | HUẾ - BÀ NÀ - MIKAZUKI - PHỐ CỔ HỘI AN (4N3Đ)",
+    "price": 5200000,
+    "duration": "4N3Đ",
+    "departure": "Hà Nội",
+    "transport": "Máy bay",
+    "image": "19021/0dc05f36f96414aaa6dc93e4d2b4df4c.jpg",
+    "shortDesc": "Tour lễ 30/4: Huế, Bà Nà, Mikazuki Water Park, phố cổ Hội An."
+  },
+  {
+    "id": "19022",
+    "name": "Đà Nẵng – Huế - KDL Bà Nà - Phố Cổ Hội An – Làng Hương Thuỷ Xuân – Bán Đảo Sơn Trà",
+    "price": 5500000,
+    "duration": "5N4Đ",
+    "departure": "Hà Nội",
+    "transport": "Máy bay",
+    "image": "19022/06e443446b383ea61e294402a98f1e21.jpg",
+    "shortDesc": "Tour Đà Nẵng - Huế: Bà Nà, Hội An, làng hương Thủy Xuân, Sơn Trà."
+  },
+  {
+    "id": "19036",
+    "name": "TOUR PHAN THIẾT 3N2Đ | LINH ĐỊA ĐỨC MẸ TÀ PAO - ĐẢO BÌNH HƯNG",
+    "price": 2800000,
+    "duration": "3N2Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "19036/8868a5dcfdf55dd7e74a507c8eb9da8c.jpg",
+    "shortDesc": "Tour Phan Thiết 3N2Đ: Linh địa Đức Mẹ Tà Pao, đảo Bình Hưng."
+  },
+  {
+    "id": "19062",
+    "name": "TOUR HUẾ MÙA XUÂN 4N3Đ | HUẾ - BÀ NÀ - MIKAZUKI - PHỐ CỔ HỘI AN",
+    "price": 4800000,
+    "duration": "4N3Đ",
+    "departure": "Hà Nội",
+    "transport": "Máy bay",
+    "image": "19062/0dc05f36f96414aaa6dc93e4d2b4df4c.jpg",
+    "shortDesc": "Tour Huế mùa xuân: Bà Nà, Mikazuki Water Park, Hội An."
+  },
+  {
+    "id": "19066",
+    "name": "Liên Tuyến Bắc Trung: Sapa – Fansipan – Hà Nội - Hạ Long - Ninh Bình - Đà Nẵng – Bà Nà – Hội An - Động Phong Nha & Thiên Đường - Huế",
+    "price": 8500000,
+    "duration": "8N7Đ",
+    "departure": "Hà Nội",
+    "transport": "Máy bay + Xe",
+    "image": "19066/391818966b2a2134cd942e937448d2c4.jpg",
+    "shortDesc": "Liên tuyến Bắc Trung 8N7Đ: Sapa, Hạ Long, Đà Nẵng, Huế."
+  },
+  {
+    "id": "19067",
+    "name": "TOUR PHAN THIẾT 3N2Đ | CÁT VÀNG - MŨI NÉ - HÒN RƠM - JEEP TOUR",
+    "price": 2600000,
+    "duration": "3N2Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe du lịch",
+    "image": "19067/2ad5d5cd35019986d1196424c1e477aa.jpg",
+    "shortDesc": "Tour Phan Thiết: Cát Vàng, Mũi Né, Hòn Rơm, Jeep Tour."
+  },
+  {
+    "id": "19068",
+    "name": "TOUR HUẾ MÙA XUÂN 4N3Đ | BÀ NÀ - HỘI AN - HUẾ - ĐỘNG PHONG NHA",
+    "price": 5000000,
+    "duration": "4N3Đ",
+    "departure": "Hà Nội",
+    "transport": "Máy bay",
+    "image": "19068/0dc05f36f96414aaa6dc93e4d2b4df4c.jpg",
+    "shortDesc": "Tour Huế mùa xuân: Bà Nà, Hội An, Động Phong Nha."
+  },
+  {
+    "id": "19069",
+    "name": "TOUR PHAN THIẾT 3N2Đ | ĐẢO PHÚ QUÝ - THIÊN ĐƯỜNG BIỂN XANH",
+    "price": 3500000,
+    "duration": "3N2Đ",
+    "departure": "TP. Hồ Chí Minh",
+    "transport": "Xe + Tàu",
+    "image": "19069/0329ca162b8e41430dc25985fbddd94f.jpg",
+    "shortDesc": "Tour đảo Phú Quý - thiên đường biển xanh Phan Thiết."
+  },
+  {
+    "id": "19090",
+    "name": "TOUR MIỀN BẮC MÙA XUÂN 5N4Đ | HẠ LONG - NINH BÌNH - SAPA - FANSIPAN",
+    "price": 6500000,
+    "duration": "5N4Đ",
+    "departure": "Hà Nội",
+    "transport": "Xe du lịch",
+    "image": "19090/2145e8644168237051c8b61cdc122bfb.jpg",
+    "shortDesc": "Tour miền Bắc mùa xuân: Hạ Long, Ninh Bình, Sapa, Fansipan."
+  },
+  {
+    "id": "19567",
+    "name": "TOUR VỊNH HẠ LONG 2N1Đ | Trải nghiệm du thuyền Vịnh Hạ Long Le Journey 5 sao",
+    "price": 4200000,
+    "duration": "2N1Đ",
+    "departure": "Hà Nội",
+    "transport": "Xe du lịch",
+    "image": "19567/4508276396c631cfc954853d17c4d0a6.jpg",
+    "shortDesc": "Du thuyền 5 sao Le Journey trên Vịnh Hạ Long 2N1Đ."
+  },
+  {
+    "id": "19688",
+    "name": "TOUR MIỀN BẮC MÙA XUÂN 3N2Đ | HÀ NỘI - SAPA - FANSIPAN",
+    "price": 3800000,
+    "duration": "3N2Đ",
+    "departure": "Hà Nội",
+    "transport": "Xe + Tàu",
+    "image": "19688/2145e8644168237051c8b61cdc122bfb.jpg",
+    "shortDesc": "Tour miền Bắc: Hà Nội, Sapa, chinh phục đỉnh Fansipan."
+  }
+]

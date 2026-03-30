@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head><title>Giỏ hàng</title><link rel="stylesheet" href="../../style.css"></head>
+<body>
+<h1>Giỏ hàng</h1>
+{% if items %}
+<table border="1" width="90%">
+  <tr><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th>Hành động</th></tr>
+  {% for it in items %}
+  <tr data-id="{{ it.id }}">
+    <td>{{ it.name }}</td>
+    <td>{{ "%0.2f"|format(it.price) }} đ</td>
+    <td>
+      <input type="number" min="0" value="{{ it.qty }}" onchange="updateQty('{{ it.id }}', this.value)">
+    </td>
+    <td>{{ "%0.2f"|format(it.total) }} đ</td>
+    <td><button onclick="removeItem('{{ it.id }}')">Xóa</button></td>
+  </tr>
+  {% endfor %}
+</table>
+<p>Tổng cộng: {{ "%.2f"|format(total) }} đ</p>
+
+<h3>Thông tin thanh toán</h3>
+<div>
+  <input id="cust_name" placeholder="Tên người nhận" />
+  <input id="cust_email" placeholder="Email" />
+  <button onclick="checkout()">Thanh toán</button>
+</div>
+
+<script>
+  // Minimal client-side logic placeholders for demo
+  async function checkout(){
+    const name = document.getElementById('cust_name').value;
+    const email = document.getElementById('cust_email').value;
+    const resp = await fetch('/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ customer_name: name, customer_email: email })
+    });
+    if (resp.ok){
+      // Navigate to invoice_html or invoice_pdf as needed; here we redirect to pdf for download
+      const data = await resp.text();
+      document.open();
+      document.write(data);
+      document.close();
+    }
+  }
+  // Placeholder functions for update/remove – implement via API in production
+  function updateQty(id, qty){
+    fetch('/api/cart/update', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id, qty: Number(qty) })
+    }).then(() => location.reload());
+  }
+  function removeItem(id){
+    fetch('/api/cart/remove', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id })
+    }).then(() => location.reload());
+  }
+</script>
+</body>
+</html>

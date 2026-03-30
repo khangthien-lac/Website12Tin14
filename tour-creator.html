@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tour Content Editor</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f5f5;padding:20px}
+h1{text-align:center;margin-bottom:20px;color:#333}
+.container{max-width:1200px;margin:0 auto;display:flex;gap:20px}
+@media(max-width:768px){.container{flex-direction:column}}
+.panel{flex:1;background:#fff;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.panel h2{font-size:16px;margin-bottom:15px;padding-bottom:8px;border-bottom:2px solid #e74c3c;color:#333}
+.tour-select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px;margin-bottom:20px}
+.section{margin-bottom:20px;border:1px solid #e0e0e0;border-radius:6px;overflow:hidden}
+.section-header{background:#f8f9fa;padding:12px 15px;cursor:pointer;font-weight:bold;font-size:14px;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.section-header:hover{background:#eef}
+.section-header .arrow{transition:transform .2s}
+.section-header.active .arrow{transform:rotate(180deg)}
+.section-body{padding:15px;display:none}
+.section-body.show{display:block}
+label{display:block;font-size:13px;font-weight:bold;color:#555;margin-bottom:4px;margin-top:10px}
+label:first-child{margin-top:0}
+input[type=text],textarea{width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:4px;font-size:13px;font-family:Arial,sans-serif}
+textarea{min-height:60px;resize:vertical}
+.list-group{margin-top:8px}
+.list-item{display:flex;gap:8px;margin-bottom:6px;align-items:center}
+.list-item input{flex:1}
+.list-item button{background:#e74c3c;color:#fff;border:none;border-radius:4px;padding:6px 10px;cursor:pointer;font-size:12px;white-space:nowrap}
+.add-btn{background:#27ae60;color:#fff;border:none;border-radius:4px;padding:6px 14px;cursor:pointer;font-size:12px;margin-top:4px}
+.add-btn:hover{background:#219a52}
+.generate-btn{width:100%;padding:12px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:bold;cursor:pointer;margin-top:15px}
+.generate-btn:hover{background:#c0392b}
+.copy-btn{background:#3498db;color:#fff;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;font-size:13px;margin:10px 5px 0 0}
+.copy-btn:hover{background:#2980b9}
+.output-area{margin-top:15px}
+.output-block{margin-bottom:15px}
+.output-block h3{font-size:13px;color:#555;margin-bottom:6px}
+.output-block pre{background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-size:11px;overflow-x:auto;max-height:350px;overflow-y:auto;white-space:pre-wrap;word-break:break-all}
+.toast{position:fixed;bottom:30px;right:30px;background:#27ae60;color:#fff;padding:12px 24px;border-radius:6px;font-size:14px;display:none;z-index:999}
+.toast.show{display:block}
+.guide{background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:12px;margin-bottom:20px;font-size:13px;color:#856404}
+.guide ol{margin-left:20px;margin-top:6px}
+.guide li{margin-bottom:4px}
+.sub-section{background:#fafafa;border:1px solid #eee;border-radius:4px;padding:10px;margin-bottom:10px}
+.sub-section h4{font-size:13px;color:#e74c3c;margin-bottom:8px}
+.btn-row{display:flex;gap:10px;margin-top:10px}
+.gen-section-btn{background:#8e44ad;color:#fff;border:none;border-radius:4px;padding:6px 12px;cursor:pointer;font-size:12px}
+.gen-section-btn:hover{background:#7d3c97}
+</style>
+</head>
+<body>
+<h1>Tour Content Editor</h1>
+
+<div class="guide">
+<strong>Hướng dẫn:</strong>
+<ol>
+<li>Chọn tour cần chỉnh sửa từ dropdown</li>
+<li>Nhập nội dung cho 3 mục bên dưới</li>
+<li>Bấm <strong>Generate HTML</strong> hoặc nút <strong>Gen</strong> ở từng section</li>
+<li>Bấm <strong>Copy</strong> rồi mở file HTML của tour, tìm section tương ứng và paste đè nội dung cũ</li>
+</ol>
+</div>
+
+<div class="container">
+<!-- LEFT: Input Form -->
+<div class="panel">
+<h2>Nhập liệu</h2>
+
+<select id="tourSelect" class="tour-select">
+<option value="">-- Chọn tour --</option>
+</select>
+
+<!-- Section 1 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">🌐 Điểm nhấn hành trình <span class="arrow">▼</span></div>
+<div class="section-body">
+<label>Hành trình (route):</label>
+<input type="text" id="dnh_hanhtrinh" placeholder="VD: Hà Nội - Bảo Tàng Quân Sự - Vịnh Hạ Long - Sapa">
+<label>Lịch trình:</label>
+<input type="text" id="dnh_lichtrinh" placeholder="VD: 5 ngày 4 đêm">
+<label>Ngày khởi hành:</label>
+<input type="text" id="dnh_khoihanh" placeholder="VD: 07,11,15,18/04; 20,23,27,30/05; ...">
+<label>Vận chuyển:</label>
+<input type="text" id="dnh_vanchuyen" placeholder="VD: Xe du lịch đời mới & Máy bay khứ hồi">
+<label>Mô tả marketing:</label>
+<textarea id="dnh_mota" rows="3" placeholder="Đoạn văn mô tả về tour, mùa du lịch, trải nghiệm..."></textarea>
+<div class="btn-row">
+<button class="gen-section-btn" onclick="genSection(1)">Gen section này</button>
+</div>
+</div>
+</div>
+
+<!-- Section 2 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">✅ Dịch vụ bao gồm & không bao gồm <span class="arrow">▼</span></div>
+<div class="section-body">
+<div class="sub-section">
+<h4>Bao gồm:</h4>
+<div id="dvbg_list" class="list-group">
+<div class="list-item"><input type="text" placeholder="VD: Vé máy bay khứ hồi"><button onclick="removeItem(this)">X</button></div>
+<div class="list-item"><input type="text" placeholder="VD: Khách sạn 3-4 sao"><button onclick="removeItem(this)">X</button></div>
+<div class="list-item"><input type="text" placeholder="VD: Các bữa ăn theo chương trình"><button onclick="removeItem(this)">X</button></div>
+</div>
+<button class="add-btn" onclick="addItem('dvbg_list')">+ Thêm dòng</button>
+</div>
+<div class="sub-section">
+<h4>Không bao gồm:</h4>
+<div id="dvkb_list" class="list-group">
+<div class="list-item"><input type="text" placeholder="VD: Chi phí cá nhân"><button onclick="removeItem(this)">X</button></div>
+<div class="list-item"><input type="text" placeholder="VD: Đồ uống trong bữa ăn"><button onclick="removeItem(this)">X</button></div>
+</div>
+<button class="add-btn" onclick="addItem('dvkb_list')">+ Thêm dòng</button>
+</div>
+<div class="btn-row">
+<button class="gen-section-btn" onclick="genSection(2)">Gen section này</button>
+</div>
+</div>
+</div>
+
+<!-- Section 3 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">📝 Ghi chú <span class="arrow">▼</span></div>
+<div class="section-body">
+<div class="sub-section">
+<h4>Giá vé trẻ em:</h4>
+<label>Dưới 2 tuổi:</label>
+<textarea id="gc_tre_duoi2" rows="2" placeholder="VD: Trẻ em dưới 02 tuổi: giá vé máy bay theo quy định; miễn giá tour."></textarea>
+<label>2 - dưới 5 tuổi:</label>
+<textarea id="gc_tre_2den5" rows="2" placeholder="VD: 100% giá vé máy bay; miễn giá tour. Hai người lớn chỉ kèm 1 trẻ dưới 5 tuổi."></textarea>
+<label>5 - dưới 11 tuổi:</label>
+<textarea id="gc_tre_5den11" rows="2" placeholder="VD: 100% giá vé máy bay; 50% giá tour. Bao gồm ăn uống, ghế ngồi, ngủ chung."></textarea>
+<label>Từ 11 tuổi trở lên:</label>
+<textarea id="gc_tre_tren11" rows="2" placeholder="VD: 100% giá tour và tiêu chuẩn như người lớn."></textarea>
+</div>
+<div class="sub-section">
+<h4>Quy định thanh toán, hủy vé:</h4>
+<div id="gc_huy_list" class="list-group">
+<div class="list-item"><input type="text" placeholder="VD: Thanh toán ít nhất 50% tiền cọc"><button onclick="removeItem(this)">X</button></div>
+<div class="list-item"><input type="text" placeholder="VD: Hủy trước 15 ngày: mất 30% giá tour"><button onclick="removeItem(this)">X</button></div>
+</div>
+<button class="add-btn" onclick="addItem('gc_huy_list')">+ Thêm dòng</button>
+</div>
+<div class="sub-section">
+<h4>Quy định tổ chức đoàn:</h4>
+<div id="gc_doan_list" class="list-group">
+<div class="list-item"><input type="text" placeholder="VD: Đoàn tối thiểu 10 khách người lớn"><button onclick="removeItem(this)">X</button></div>
+</div>
+<button class="add-btn" onclick="addItem('gc_doan_list')">+ Thêm dòng</button>
+</div>
+<div class="sub-section">
+<h4>Lưu ý:</h4>
+<div id="gc_luuy_list" class="list-group">
+<div class="list-item"><input type="text" placeholder="VD: Nhận phòng sau 14:00, trả phòng trước 12:00"><button onclick="removeItem(this)">X</button></div>
+<div class="list-item"><input type="text" placeholder="VD: Hành lý tự bảo quản"><button onclick="removeItem(this)">X</button></div>
+</div>
+<button class="add-btn" onclick="addItem('gc_luuy_list')">+ Thêm dòng</button>
+</div>
+<div class="btn-row">
+<button class="gen-section-btn" onclick="genSection(3)">Gen section này</button>
+</div>
+</div>
+</div>
+
+<button class="generate-btn" onclick="generateAll()">⚡ Generate ALL</button>
+</div>
+
+<!-- RIGHT: Output -->
+<div class="panel">
+<h2>HTML Output</h2>
+<div id="output" class="output-area">
+<p style="color:#999;text-align:center;padding:40px 0;">Chọn tour + nhập dữ liệu rồi bấm Generate</p>
+</div>
+</div>
+</div>
+
+<div id="toast" class="toast">Copied!</div>
+
+<script>
+let toursData = [];
+
+fetch('tours.json')
+  .then(r => r.json())
+  .then(data => {
+    toursData = data;
+    const sel = document.getElementById('tourSelect');
+    data.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t.id;
+      opt.textContent = '[' + t.id + '] ' + t.name;
+      sel.appendChild(opt);
+    });
+  })
+  .catch(function() {
+    document.getElementById('tourSelect').innerHTML = '<option>Không load được tours.json - hãy chạy qua local server</option>';
+  });
+
+function toggleSection(el) {
+  el.classList.toggle('active');
+  el.nextElementSibling.classList.toggle('show');
+}
+
+function addItem(listId) {
+  const list = document.getElementById(listId);
+  const div = document.createElement('div');
+  div.className = 'list-item';
+  div.innerHTML = '<input type="text" placeholder="Nhập nội dung..."><button onclick="removeItem(this)">X</button>';
+  list.appendChild(div);
+  div.querySelector('input').focus();
+}
+
+function removeItem(btn) {
+  const item = btn.parentElement;
+  const list = item.parentElement;
+  if (list.children.length > 1) {
+    item.remove();
+  } else {
+    item.querySelector('input').value = '';
+  }
+}
+
+function getListValues(listId) {
+  const items = document.querySelectorAll('#' + listId + ' .list-item input');
+  return Array.from(items).map(function(i) { return i.value.trim(); }).filter(function(v) { return v; });
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function liItem(text, ml) {
+  ml = ml || '23.0pt';
+  var color = ml === '15.0pt' ? '#000000' : '#333333';
+  var size = ml === '15.0pt' ? '11.0pt' : '10.5pt';
+  var mb = ml === '15.0pt' ? '12.0pt' : '0.0pt';
+  var mt = ml === '15.0pt' ? '12.0pt' : '0.0pt';
+  return '<li dir="ltr" class="zfr3Q TYR86d eD0Rn" style="margin-left: ' + ml + ';">\n' +
+    '<p dir="ltr" class="text-paragraph" style="line-height: 1.38; margin-bottom: ' + mb + '; margin-left: 0.0pt; margin-top: ' + mt + '; padding: 0.0pt; text-indent: 0.0pt;">\n' +
+    '<span class="text-span" style="color: ' + color + '; font-size: ' + size + '; vertical-align: baseline;">\n' +
+    escapeHtml(text) + '\n</span>\n</p>\n</li>';
+}
+
+function genHighlights() {
+  var ht = document.getElementById('dnh_hanhtrinh').value.trim();
+  var lt = document.getElementById('dnh_lichtrinh').value.trim();
+  var kh = document.getElementById('dnh_khoihanh').value.trim();
+  var vc = document.getElementById('dnh_vanchuyen').value.trim();
+  var mt = document.getElementById('dnh_mota').value.trim();
+  if (!ht && !lt && !kh && !vc && !mt) return '';
+
+  var h = '';
+  h += '<p dir="ltr" class="text-paragraph" style="line-height: 1.38;">\n' +
+    '<span class="text-span" style="color: #333333; font-size: 15.0pt; vertical-align: baseline;">&#127760; Điểm nhấn hành trình</span>\n' +
+    '<span class="text-span" style="color: #000000; font-size: 11.0pt; vertical-align: baseline;"></span>\n</p>\n';
+
+  function labelAndValue(label, value) {
+    if (!value) return '';
+    return '<p dir="ltr" class="text-paragraph" style="line-height: 1.542857142857143; margin: 0.0pt; padding: 0.0pt;">\n' +
+      '<span class="text-span" style="color: #555555; font-size: 10.5pt; vertical-align: baseline;">' + label + '</span>\n</p>\n' +
+      '<p dir="ltr" class="text-paragraph" style="line-height: 1.542857142857143; margin: 0.0pt; padding: 0.0pt;">\n' +
+      '<span class="text-span" style="color: #555555; font-size: 10.5pt; vertical-align: baseline;">' + escapeHtml(value) + '</span>\n</p>\n';
+  }
+
+  h += labelAndValue('Hành trình', ht);
+  h += labelAndValue('Lịch trình', lt);
+  h += labelAndValue('Khởi hành', kh);
+  h += labelAndValue('Vận chuyển', vc);
+
+  if (mt) {
+    h += '<p dir="ltr" class="text-paragraph" style="line-height: 1.38; margin: 0.0pt; padding: 0.0pt; text-align: justify;">\n' +
+      '<span class="text-span" style="color: #333333; font-size: 10.5pt; font-style: italic; vertical-align: baseline;">\n' +
+      escapeHtml(mt) + '\n</span>\n</p>\n';
+  }
+  return h;
+}
+
+function genServices() {
+  var bg = getListValues('dvbg_list');
+  var kb = getListValues('dvkb_list');
+  if (bg.length === 0 && kb.length === 0) return '';
+
+  var h = '';
+  if (bg.length > 0) {
+    h += '<p dir="ltr" class="text-paragraph" style="line-height: 1.38;">\n' +
+      '<span class="text-span" style="color: #333333; font-size: 10.5pt; text-decoration: underline; vertical-align: baseline;">Giá tour bao gồm:</span>\n</p>\n' +
+      '<ul class="n8H08c UVNKR" style="list-style-type: square; margin-left: 0; margin-right: 0; padding: 0;">\n' +
+      bg.map(function(t) { return liItem(t); }).join('\n') + '\n</ul>\n';
+  }
+  if (kb.length > 0) {
+    h += '<p dir="ltr" class="text-paragraph" style="line-height: 1.38;">\n' +
+      '<span class="text-span" style="color: #333333; font-size: 10.5pt; text-decoration: underline; vertical-align: baseline;">Không bao gồm:</span>\n</p>\n' +
+      '<ul class="n8H08c UVNKR" style="list-style-type: square; margin-left: 0; margin-right: 0; padding: 0;">\n' +
+      kb.map(function(t) { return liItem(t); }).join('\n') + '\n</ul>\n';
+  }
+  return h;
+}
+
+function genNotes() {
+  var d2 = document.getElementById('gc_tre_duoi2').value.trim();
+  var t25 = document.getElementById('gc_tre_2den5').value.trim();
+  var t511 = document.getElementById('gc_tre_5den11').value.trim();
+  var t11 = document.getElementById('gc_tre_tren11').value.trim();
+  var huy = getListValues('gc_huy_list');
+  var doan = getListValues('gc_doan_list');
+  var luuy = getListValues('gc_luuy_list');
+
+  var hasChild = d2 || t25 || t511 || t11;
+  if (!hasChild && huy.length === 0 && doan.length === 0 && luuy.length === 0) return '';
+
+  var h = '';
+
+  function para(text) {
+    return '<p dir="ltr" class="text-paragraph" style="line-height: 1.38; margin-bottom: 12.0pt; margin-top: 12.0pt; padding: 0.0pt;">\n' +
+      '<span class="text-span" style="color: #000000; font-size: 11.0pt; vertical-align: baseline;">' + escapeHtml(text) + '</span>\n</p>\n';
+  }
+
+  function listSection(title, items) {
+    if (items.length === 0) return '';
+    var s = para(title);
+    s += '<ul class="n8H08c UVNKR" style="list-style-type: square; margin-left: 0; margin-right: 0; padding: 0;">\n';
+    items.forEach(function(item) { s += liItem(item, '15.0pt') + '\n'; });
+    s += '</ul>\n';
+    return s;
+  }
+
+  if (hasChild) {
+    h += para('Giá vé dành cho trẻ em:');
+    h += '<ul class="n8H08c UVNKR" style="list-style-type: square; margin-left: 0; margin-right: 0; padding: 0;">\n';
+    if (d2) h += liItem(d2, '15.0pt') + '\n';
+    if (t25) h += liItem(t25, '15.0pt') + '\n';
+    if (t511) h += liItem(t511, '15.0pt') + '\n';
+    if (t11) h += liItem(t11, '15.0pt') + '\n';
+    h += '</ul>\n';
+  }
+
+  h += listSection('Quy định thanh toán, hủy vé:', huy);
+  h += listSection('Quy định tổ chức đoàn:', doan);
+  h += listSection('Lưu ý:', luuy);
+
+  h += '<p dir="ltr" class="text-paragraph" style="line-height: 1.38; margin-bottom: 12.0pt; margin-top: 12.0pt;">\n' +
+    '<span class="text-span" style="color: #000000; font-size: 11.0pt; vertical-align: baseline;">KÍNH CHÚC QUÝ KHÁCH CHUYẾN ĐI THÚ VỊ VÀ BỔ ÍCH! &#10024;</span>\n</p>\n';
+
+  return h;
+}
+
+function outputBlock(title, code) {
+  var id = 'code_' + Math.random().toString(36).substr(2, 9);
+  return '<div class="output-block">' +
+    '<h3>' + title + '</h3>' +
+    '<button class="copy-btn" onclick="copyCode(\'' + id + '\')">Copy</button>' +
+    '<pre id="' + id + '">' + escapeHtml(code) + '</pre>' +
+    '</div>';
+}
+
+function genSection(num) {
+  var tourId = document.getElementById('tourSelect').value;
+  if (!tourId) { alert('Vui lòng chọn tour!'); return; }
+  var output = document.getElementById('output');
+
+  if (num === 1) {
+    var content = genHighlights();
+    if (!content) { alert('Nhập ít nhất 1 field Điểm nhấn hành trình!'); return; }
+    var full = '<section class="section-content-block">\n<div class="section-bg">\n</div>\n' +
+      '<div class="section-content">\n<div class="content-grid">\n' +
+      '<div class="grid-column grid-stretch">\n<div class="column-inner">\n<div class="">\n' +
+      '<div class="content-inner">\n<div class="grid-cell cell-center">\n<div class="jXK9ad-SmKAyb">\n' +
+      '<div class="cell-content image-wrapper">\n' + content + '</div>\n</div>\n</div>\n' +
+      '</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>';
+    output.innerHTML = outputBlock('1. Điểm nhấn hành trình', full);
+  }
+
+  if (num === 2) {
+    var content2 = genServices();
+    if (!content2) { alert('Nhập ít nhất 1 dòng dịch vụ!'); return; }
+    var full2 = '<details class="tour-dropdown">\n' +
+      '<summary>Dịch vụ bao gồm và không bao gồm</summary>\n' +
+      '<div class="dropdown-body">\n' + content2 + '</div>\n</details>';
+    output.innerHTML = outputBlock('2. Dịch vụ bao gồm & không bao gồm', full2);
+  }
+
+  if (num === 3) {
+    var content3 = genNotes();
+    if (!content3) { alert('Nhập ít nhất 1 mục ghi chú!'); return; }
+    var full3 = '<details class="tour-dropdown">\n' +
+      '<summary>Ghi chú</summary>\n' +
+      '<div class="dropdown-body">\n' + content3 + '</div>\n</details>';
+    output.innerHTML = outputBlock('3. Ghi chú', full3);
+  }
+}
+
+function generateAll() {
+  var tourId = document.getElementById('tourSelect').value;
+  if (!tourId) { alert('Vui lòng chọn tour!'); return; }
+
+  var h1 = genHighlights();
+  var h2 = genServices();
+  var h3 = genNotes();
+
+  if (!h1 && !h2 && !h3) { alert('Vui lòng nhập ít nhất 1 mục!'); return; }
+
+  var output = document.getElementById('output');
+  output.innerHTML = '';
+
+  if (h1) {
+    var s1 = '<section class="section-content-block">\n<div class="section-bg">\n</div>\n' +
+      '<div class="section-content">\n<div class="content-grid">\n' +
+      '<div class="grid-column grid-stretch">\n<div class="column-inner">\n<div class="">\n' +
+      '<div class="content-inner">\n<div class="grid-cell cell-center">\n<div class="jXK9ad-SmKAyb">\n' +
+      '<div class="cell-content image-wrapper">\n' + h1 + '</div>\n</div>\n</div>\n' +
+      '</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>';
+    output.innerHTML += outputBlock('1. Điểm nhấn hành trình', s1);
+  }
+
+  if (h2) {
+    var s2 = '<details class="tour-dropdown">\n' +
+      '<summary>Dịch vụ bao gồm và không bao gồm</summary>\n' +
+      '<div class="dropdown-body">\n' + h2 + '</div>\n</details>';
+    output.innerHTML += outputBlock('2. Dịch vụ bao gồm & không bao gồm', s2);
+  }
+
+  if (h3) {
+    var s3 = '<details class="tour-dropdown">\n' +
+      '<summary>Ghi chú</summary>\n' +
+      '<div class="dropdown-body">\n' + h3 + '</div>\n</details>';
+    output.innerHTML += outputBlock('3. Ghi chú', s3);
+  }
+}
+
+function copyCode(id) {
+  var el = document.getElementById(id);
+  var text = el.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    showToast('Copied!');
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Copied!');
+  });
+}
+
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 1500);
+}
+</script>
+</body>
+</html>

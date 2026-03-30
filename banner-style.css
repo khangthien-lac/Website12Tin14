@@ -1,0 +1,31 @@
+/* Banner block under nav - shared styling */
+.site-topbar {
+  background: var(--bg-theme);
+  color: var(--heading-color);
+  text-align: center;
+  padding: 8px 0;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-weight: 700;
+}
+.banner-under-nav { width: 100%; margin: 0; padding: 0; }
+.banner-under-nav .site-topbar { height: 40px; line-height: 40px; }
+.banner-under-nav .banner-area {
+  aspect-ratio: 16 / 6;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 260px;
+}
+.banner-area .banner-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: none;
+}
+.banner-area .banner-slide.active {
+  display: block;
+}
+.banner-area .banner-slide img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+}
+@import url('theme.css');
