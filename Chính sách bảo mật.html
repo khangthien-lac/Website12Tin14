@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chính sách bảo mật - VS2T Travel</title>
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="banner-style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.policy-hero {
+    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+}
+.policy-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.policy-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.policy-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.policy-section-title {
+    color: var(--heading-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 35px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.policy-section-title i {
+    color: var(--primary-color);
+}
+.faq-item {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.faq-item:hover {
+    box-shadow: 0 4px 20px rgba(30, 136, 229, 0.15);
+}
+.faq-question {
+    padding: 20px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    transition: background 0.3s ease;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+.faq-question:hover {
+    background: #f8faff;
+}
+.faq-question .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: var(--primary-color);
+}
+.faq-item.active .faq-question .icon {
+    background: var(--primary-color);
+    color: white;
+    transform: rotate(180deg);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: #fafafa;
+}
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+.faq-answer p {
+    padding: 20px 25px;
+    margin: 0;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+.faq-answer ul {
+    padding: 10px 25px 20px 45px;
+    margin: 0;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+.back-link:hover {
+    color: var(--heading-color);
+}
+.last-updated {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+</style>
+</head>
+<body>
+<div class="policy-hero">
+    <h1><i class="fas fa-shield-alt"></i> Chính sách bảo mật</h1>
+    <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của quý khách hàng một cách an toàn và bảo mật</p>
+</div>
+
+<div class="policy-container">
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Quay về trang chủ</a>
+
+    <h2 class="policy-section-title"><i class="fas fa-question-circle"></i> Câu hỏi thường gặp</h2>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>1. VS2T thu thập những thông tin cá nhân nào của khách hàng?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Chúng tôi thu thập các thông tin cá nhân bao gồm:</p>
+            <ul>
+                <li>Họ và tên đầy đủ</li>
+                <li>Số điện thoại liên hệ</li>
+                <li>Địa chỉ email</li>
+                <li>Địa chỉ nhà riêng hoặc địa chỉ nhận hàng</li>
+                <li>Thông tin thanh toán (số thẻ, ngày hết hạn, mã bảo mật)</li>
+                <li>Thông tin hộ chiếu (đối với tour quốc tế)</li>
+                <li>Ngày sinh, giới tính</li>
+                <li>Lịch sử đặt tour và đánh giá dịch vụ</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>2. VS2T sử dụng thông tin cá nhân của khách hàng vào mục đích gì?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Thông tin cá nhân của quý khách được sử dụng cho các mục đích sau:</p>
+            <ul>
+                <li>Xử lý và xác nhận đặt tour, đặt vé máy bay, đặt phòng khách sạn</li>
+                <li>Liên hệ và giao dịch thông tin về dịch vụ du lịch</li>
+                <li>Cung cấp hỗ trợ khách hàng trước, trong và sau khi sử dụng dịch vụ</li>
+                <li>Gửi thông tin khuyến mãi, ưu đãi đặc biệt qua email và SMS</li>
+                <li>Cải thiện và nâng cao chất lượng dịch vụ</li>
+                <li>Thực hiện các thống kê phân tích nội bộ</li>
+                <li>Giải quyết tranh chấp và các vấn đề pháp lý liên quan</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>3. Thông tin cá nhân của khách hàng được bảo mật như thế nào?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Chúng tôi áp dụng các biện pháp bảo mật nghiêm ngặt:</p>
+            <ul>
+                <li>Sử dụng công nghệ mã hóa SSL (Secure Socket Layer) cho tất cả giao dịch trực tuyến</li>
+                <li>Lưu trữ dữ liệu trên hệ thống máy chủ có firewall và bảo vệ 24/7</li>
+                <li>Hạn chế quyền truy cập thông tin cá nhân chỉ cho nhân viên được ủy quyền</li>
+                <li>Cam kết không bán, cho thuê hoặc chia sẻ thông tin cá nhân cho bên thứ ba vì mục đích thương mại</li>
+                <li>Thực hiện kiểm tra bảo mật định kỳ và cập nhật hệ thống thường xuyên</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>4. Thông tin thẻ thanh toán của khách hàng có được bảo mật không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Chúng tôi đặc biệt chú trọng đến bảo mật thông tin thanh toán:</p>
+            <ul>
+                <li>Thông tin thẻ được mã hóa theo chuẩn PCI DSS (Payment Card Industry Data Security Standard)</li>
+                <li>Chúng tôi không lưu trữ số CVV/CVC trên hệ thống</li>
+                <li>Thanh toán được xử lý qua cổng thanh toán uy tín (VNPay, MoMo, ZaloPay)</li>
+                <li>Mọi giao dịch đều được xác thực qua 3D Secure</li>
+                <li>Hệ thống giám sát giao dịch 24/7 để phát hiện các hoạt động đáng ngờ</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>5. Khách hàng có quyền truy cập và chỉnh sửa thông tin cá nhân không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Quý khách hoàn toàn có quyền:</p>
+            <ul>
+                <li>Truy cập và xem thông tin cá nhân đã cung cấp</li>
+                <li>Yêu cầu chỉnh sửa thông tin không chính xác</li>
+                <li>Yêu cầu xóa thông tin cá nhân khỏi hệ thống (trừ các thông tin cần lưu trữ theo pháp luật)</li>
+                <li>Phản đối việc xử lý thông tin cho mục đích marketing</li>
+                <li>Yêu cầu cung cấp bản sao dữ liệu cá nhân</li>
+            </ul>
+            <p>Để thực hiện các quyền này, quý khách vui lòng liên hệ qua email info@vs2tcom.vn hoặc hotline 1900 3667.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>6. VS2T có chia sẻ thông tin cá nhân với bên thứ ba không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Chúng tôi chỉ chia sẻ thông tin khi cần thiết và có sự đồng ý của quý khách:</p>
+            <ul>
+                <li><strong>Đối tác dịch vụ:</strong> Chia sẻ với khách sạn, hãng hàng không, công ty lữ hành để thực hiện dịch vụ</li>
+                <li><strong>Đối tác thanh toán:</strong> Xử lý giao dịch qua cổng thanh toán</li>
+                <li><strong>Cơ quan pháp luật:</strong> Cung cấp khi được yêu cầu theo quy định pháp luật</li>
+                <li><strong>Tư vấn chuyên môn:</strong> Với luật sư, kiểm toán viên trong các trường hợp đặc biệt</li>
+            </ul>
+            <p>Chúng tôi cam kết không bán thông tin cá nhân cho bên thứ ba vì mục đích quảng cáo.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>7. Chính sách bảo mật có thay đổi không và quý khách có được thông báo không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Chúng tôi có thể cập nhật chính sách bảo mật theo thời gian:</p>
+            <ul>
+                <li>Mọi thay đổi sẽ được đăng tải trên trang này với ngày cập nhật mới nhất</li>
+                <li>Trong trường hợp thay đổi quan trọng, chúng tôi sẽ gửi thông báo qua email cho quý khách</li>
+                <li>Quý khách nên thường xuyên kiểm tra trang này để cập nhật thông tin mới nhất</li>
+                <li>Việc tiếp tục sử dụng dịch vụ sau khi có thay đổi đồng nghĩa với việc chấp nhận chính sách mới</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>8. Làm thế nào để liên hệ VS2T về các vấn đề bảo mật?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <p>Quý khách có thể liên hệ với chúng tôi qua các kênh sau:</p>
+            <ul>
+                <li><strong>Hotline:</strong> 1900 3667 (24/7)</li>
+                <li><strong>Email:</strong> info@vs2tcom.vn</li>
+                <li><strong>Địa chỉ:</strong> 235 Nguyễn Văn Cừ, phường Chợ Quán, TPHCM</li>
+                <li><strong>Fanpage:</strong> VS2T Travel</li>
+            </ul>
+            <p>Đội ngũ hỗ trợ của chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.</p>
+        </div>
+    </div>
+
+    <div class="last-updated">
+        <p>Cập nhật lần cuối: Tháng 3 năm 2026</p>
+    </div>
+</div>
+
+<footer class="vs2t-footer">
+    <div class="footer-divider"></div>
+    <div class="footer-main">
+        <div class="company-info">
+            <h3>CÔNG TY CỔ PHẦN TRUYỀN THÔNG DU LỊCH VS2T</h3>
+            <p><strong>Địa chỉ :</strong> 235 Nguyễn Văn Cừ, phường Chợ Quán, TPHCM.</p>
+            <p><strong>Điện thoại :</strong> 0936 676767 | <strong>Hotline :</strong> 1900 3667</p>
+            <p><strong>Website :</strong> vs2t.com.vn | <strong>Email :</strong> info@vs2tcom.vn</p>
+        </div>
+        <div class="customer-corner">
+            <h4>Góc khách hàng</h4>
+            <ul>
+                <li><a href="Chính sách đặt tour.html">Chính sách đặt tour</a></li>
+                <li><a href="Chính sách bảo mật.html">Chính sách bảo mật</a></li>
+                <li><a href="Phiếu góp ý.html">Ý kiến khách hàng</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="copyright">
+            Copyright © 2026 <strong>VS2T</strong>. Ghi rõ nguồn "vs2t.com.vn" khi sử dụng thông tin từ website này.
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleFaq(element) {
+    const faqItem = element.parentElement;
+    faqItem.classList.toggle('active');
+}
+</script>
+
+</body>
+</html>

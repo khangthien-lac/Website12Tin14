@@ -7,6 +7,10 @@
 
   var mapInitialized = false;
   var mapInstance = null;
+  var markerColors = [
+    "#2E86DE", "#E74C3C", "#27AE60", "#F39C12", "#8E44AD",
+    "#1ABC9C", "#E67E22", "#16A085", "#C0392B", "#2980B9",
+  ];
 
   function createMap(containerId, waypoints) {
     var container = document.getElementById(containerId);
@@ -24,10 +28,6 @@
       maxZoom: 18,
     }).addTo(map);
 
-    var markerColors = [
-      "#2E86DE", "#E74C3C", "#27AE60", "#F39C12", "#8E44AD",
-      "#1ABC9C", "#E67E22", "#16A085", "#C0392B", "#2980B9",
-    ];
     var markers = [];
 
     waypoints.forEach(function (wp, i) {
@@ -43,60 +43,47 @@
       });
 
       var marker = L.marker([wp.lat, wp.lng], { icon: icon }).addTo(map);
+      var dayInfo = wp.day ? "Ngày " + wp.day : "";
+      var descInfo = wp.desc ? wp.desc : "";
       marker.bindPopup(
-        "<b>Điểm " + (i + 1) + " / " + waypoints.length + "</b><br>" +
-        wp.name +
-        (i === 0 ? "<br><i>Khởi hành</i>" :
-         i === waypoints.length - 1 ? "<br><i>Điểm cuối</i>" : "")
+        "<b>" + wp.name + "</b><br>" +
+        (dayInfo ? "<i>" + dayInfo + "</i><br>" : "") +
+        (descInfo ? "<small>" + descInfo + "</small>" : "")
       );
       markers.push(marker);
     });
 
-    // Dashed line fallback
-    var polyline = L.polyline(
-      waypoints.map(function (wp) { return [wp.lat, wp.lng]; }),
-      { color: "#2E86DE", weight: 4, opacity: 0.7, dashArray: "10, 10" }
+    // Filter consecutive duplicate waypoints
+    var uniqueWaypoints = [];
+    var lastLat = null, lastLng = null;
+    waypoints.forEach(function (wp) {
+      if (wp.lat !== lastLat || wp.lng !== lastLng) {
+        uniqueWaypoints.push(wp);
+        lastLat = wp.lat;
+        lastLng = wp.lng;
+      }
+    });
+
+    // Draw flight routes (straight lines within Vietnam)
+    uniqueWaypoints.forEach(function (wp, i) {
+      if (i < uniqueWaypoints.length - 1) {
+        var nextWp = uniqueWaypoints[i + 1];
+        var flightLine = L.polyline(
+          [[wp.lat, wp.lng], [nextWp.lat, nextWp.lng]],
+          { color: "#E74C3C", weight: 2, opacity: 0.8, dashArray: "8, 8" }
+        ).addTo(map);
+      }
+    });
+
+    // Main route line
+    var routeLine = L.polyline(
+      uniqueWaypoints.map(function (wp) { return [wp.lat, wp.lng]; }),
+      { color: "#2E86DE", weight: 3, opacity: 0.6 }
     ).addTo(map);
 
-    var allPoints = waypoints.map(function (wp) { return [wp.lat, wp.lng]; });
+    var allPoints = uniqueWaypoints.map(function (wp) { return [wp.lat, wp.lng]; });
     var bounds = L.latLngBounds(allPoints);
-    map.fitBounds(bounds, { padding: [40, 40] });
-
-    // OSRM driving route
-    try {
-      var coordString = waypoints.map(function (wp) {
-        return wp.lng + "," + wp.lat;
-      }).join(";");
-
-      var url =
-        "https://router.project-osrm.org/route/v1/driving/" +
-        coordString + "?overview=full&geometries=geojson";
-
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", url, true);
-      xhr.onload = function () {
-        if (xhr.status === 200) {
-          try {
-            var data = JSON.parse(xhr.responseText);
-            if (data.code === "Ok" && data.routes && data.routes.length > 0) {
-              var route = data.routes[0];
-              var coordinates = route.geometry.coordinates.map(function (c) {
-                return [c[1], c[0]];
-              });
-              map.removeLayer(polyline);
-              var routeLine = L.polyline(coordinates, {
-                color: "#2E86DE", weight: 4, opacity: 0.8,
-              }).addTo(map);
-
-              var newBounds = routeLine.getBounds();
-              markers.forEach(function (m) { newBounds.extend(m.getLatLng()); });
-              map.fitBounds(newBounds, { padding: [40, 40] });
-            }
-          } catch (e) {}
-        }
-      };
-      xhr.send();
-    } catch (e) {}
+    map.fitBounds(bounds, { padding: [50, 50] });
 
     // Legend
     var legend = L.control({ position: "bottomright" });
@@ -120,79 +107,49 @@
   }
 
   function buildDropdown(targetContainer, waypoints) {
-    // Build dropdown HTML
     targetContainer.innerHTML = "";
-
-    // Override parent .footer-map fixed height/background
     targetContainer.style.height = "auto";
     targetContainer.style.background = "transparent";
     targetContainer.style.borderRadius = "0";
 
-    var wrapper = document.createElement("div");
-    wrapper.className = "tour-route-dropdown";
-
-    var header = document.createElement("div");
-    header.className = "tour-route-header";
-    header.innerHTML =
-      '<span class="tour-route-title">' +
-        '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:8px;">' +
-          '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>' +
-          '<circle cx="12" cy="10" r="3"></circle>' +
-        '</svg>Lộ trình tour</span>' +
-      '<span class="tour-route-arrow">&#9660;</span>';
-
-    var body = document.createElement("div");
-    body.className = "tour-route-body";
-
+    var mapContainer = document.createElement("div");
+    mapContainer.style.marginBottom = "20px";
+    
     var mapDiv = document.createElement("div");
     mapDiv.id = "tour-route-map";
-    body.appendChild(mapDiv);
+    mapDiv.style.height = "400px";
+    mapDiv.style.borderRadius = "12px";
+    mapDiv.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+    mapContainer.appendChild(mapDiv);
 
-    // Waypoint list
     var listDiv = document.createElement("div");
     listDiv.className = "tour-route-list";
-    var listHTML = '<div class="tour-route-steps">';
+    listDiv.style.padding = "15px";
+    listDiv.style.background = "#f8f9fa";
+    listDiv.style.borderRadius = "8px";
+    var listHTML = '<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;">';
     waypoints.forEach(function (wp, i) {
       var isFirst = i === 0;
       var isLast = i === waypoints.length - 1;
-      var stepClass = isFirst ? "step-start" : isLast ? "step-end" : "step-mid";
+      var color = markerColors[i % markerColors.length];
       listHTML +=
-        '<div class="tour-route-step ' + stepClass + '">' +
-          '<div class="step-dot">' + (i + 1) + '</div>' +
-          '<div class="step-info">' +
-            '<span class="step-name">' + wp.name + '</span>' +
-            (isFirst ? '<span class="step-badge start">Khởi hành</span>' :
-             isLast ? '<span class="step-badge end">Điểm cuối</span>' :
-             '<span class="step-badge mid">Ngày ' + (i + 1) + '</span>') +
-          '</div>' +
+        '<div style="display:flex;align-items:center;gap:5px;">' +
+          '<span style="background:' + color + ';color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;">' + (i + 1) + '</span>' +
+          '<span style="font-weight:bold;font-size:14px;">' + wp.name + '</span>' +
         '</div>';
       if (!isLast) {
-        listHTML += '<div class="step-connector"></div>';
+        listHTML += '<span style="color:#999;">&#8594;</span>';
       }
     });
     listHTML += '</div>';
     listDiv.innerHTML = listHTML;
-    body.appendChild(listDiv);
 
-    wrapper.appendChild(header);
-    wrapper.appendChild(body);
-    targetContainer.appendChild(wrapper);
+    targetContainer.appendChild(mapContainer);
+    targetContainer.appendChild(listDiv);
 
-    // Toggle
-    header.addEventListener("click", function () {
-      var isOpen = wrapper.classList.contains("open");
-      wrapper.classList.toggle("open");
-
-      if (!isOpen && !mapInitialized) {
-        setTimeout(function () {
-          createMap("tour-route-map", waypoints);
-        }, 100);
-      } else if (!isOpen && mapInstance) {
-        setTimeout(function () {
-          mapInstance.invalidateSize();
-        }, 350);
-      }
-    });
+    setTimeout(function () {
+      createMap("tour-route-map", waypoints);
+    }, 100);
   }
 
   function init() {

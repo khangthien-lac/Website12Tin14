@@ -34,7 +34,7 @@ Skip to navigation
 <a class="site-logo-link" href="index.html">
 <img src="d4210c45aec02871569eec3c329acee3.jpg" class="site-logo-img" alt="VS2T Logo">
 </a>
-<a class="site-hotline" href="tel:19003667">HOTLINE: 19003667</a>
+<a class="site-hotline" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">HOTLINE: 19003667</a>
 <ul class="nav-menu">
 <li><a class="nav-link" href="index.html">Trang chủ</a></li>
 <li class="nav-dropdown">
@@ -189,6 +189,11 @@ Skip to navigation
     </div>
   </div>
 
+</div>
+
+<div class="tour-map-section" style="max-width: 900px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
+  <h3 style="text-align: center; color: #ff007f; margin-top: 0; margin-bottom: 20px;">Bản đồ hành trình</h3>
+  <div class="footer-map" style="height: 450px;"></div>
 </div>
 
 <style>
@@ -821,33 +826,41 @@ KÍNH CHÚC QUÝ KHÁCH CHUYẾN ĐI THÚ VỊ VÀ BỔ ÍCH !
   <button onclick="addToCart('19068','TOUR HUẾ MÙA XUÂN 4N3Đ | BÀ NÀ - HỘI AN - HUẾ - ĐỘNG PHONG NHA',5000000)" style="background:#e74c3c;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:8px;cursor:pointer;font-weight:bold;letter-spacing:1px;">🛒 MUA TOUR</button>
 </div>
 <script src="scripts/cart.js"></script>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+window.TOUR_ROUTE_WAYPOINTS = [{"name": "Huế", "lat": 16.4637, "lng": 107.5909}, {"name": "Động Thiên Đường", "lat": 17.315, "lng": 106.55}, {"name": "Đà Nẵng", "lat": 16.0544, "lng": 108.2022}, {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.989}];
+</script>
+<script src="tour-map.js"></script>
 <footer class="vs2t-footer">
     <div class="footer-services">
         <a class="service-box pink" href="#">
             <i class="fas fa-hotel"></i>
             <div>
-                <span class="title">KHÁCH SẠN</span>
+                <span class="service-title">KHÁCH SẠN</span>
                 <p>Khách sạn tốt nhất tại các địa điểm du lịch nổi tiếng.</p>
             </div>
         </a>
         <a class="service-box blue" href="Mua sắm.html">
             <i class="fas fa-shopping-cart"></i>
             <div>
-                <span class="title">MUA SẮM</span>
+                <span class="service-title">MUA SẮM</span>
                 <p>Đa dạng sản phẩm, quà tặng du lịch chất lượng cao.</p>
             </div>
         </a>
         <a class="service-box orange" href="GIỎ HÀNG.html">
             <i class="fas fa-shopping-bag"></i>
             <div>
-                <span class="title">GIỎ HÀNG</span>
+                <span class="service-title">GIỎ HÀNG</span>
                 <p>Xem lại và thanh toán đơn hàng của bạn.</p>
             </div>
         </a>
         <a class="service-box teal" href="Vé máy bay.html">
             <i class="fas fa-plane"></i>
             <div>
-                <span class="title">VÉ MÁY BAY</span>
+                <span class="service-title">VÉ MÁY BAY</span>
                 <p>Vé máy bay giá rẻ nhất, nhiều khuyến mãi hấp dẫn.</p>
             </div>
         </a>
@@ -894,10 +907,10 @@ KÍNH CHÚC QUÝ KHÁCH CHUYẾN ĐI THÚ VỊ VÀ BỔ ÍCH !
         <div class="customer-corner">
             <h4>Góc khách hàng</h4>
             <ul>
-                <li>Chính sách đặt tour</li>
-                <li>Chính sách bảo mật</li>
-                <li>Ý kiến khách hàng</li>
-                <li>Phiếu góp ý</li>
+                <li><a href="Chính sách đặt tour.html">Chính sách đặt tour</a></li>
+                <li><a href="Chính sách bảo mật.html">Chính sách bảo mật</a></li>
+                <li><a href="Phiếu góp ý.html">Ý kiến khách hàng</a></li>
+                <li><a href="Phiếu góp ý.html">Phiếu góp ý</a></li>
             </ul>
         </div>
 
@@ -929,13 +942,6 @@ KÍNH CHÚC QUÝ KHÁCH CHUYẾN ĐI THÚ VỊ VÀ BỔ ÍCH !
         Copyright © 2026 <strong>VS2T</strong>. Ghi rõ nguồn "vs2t.com.vn" khi sử dụng thông tin từ website này.
     </div>
 </footer>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-<script>
-window.TOUR_ROUTE_WAYPOINTS = [{"name": "Huế", "lat": 16.4637, "lng": 107.5909}, {"name": "Động Thiên Đường", "lat": 17.315, "lng": 106.55}, {"name": "Đà Nẵng", "lat": 16.0544, "lng": 108.2022}, {"name": "Bà Nà Hills", "lat": 15.9961, "lng": 107.989}];
-</script>
-<script src="tour-map.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chính sách đặt tour - VS2T Travel</title>
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="banner-style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.policy-hero {
+    background: linear-gradient(135deg, #c92077 0%, #e91e63 100%);
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+}
+.policy-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.policy-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.policy-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.policy-section-title {
+    color: var(--heading-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 35px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.policy-section-title i {
+    color: var(--primary-color);
+}
+.faq-item {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.faq-item:hover {
+    box-shadow: 0 4px 20px rgba(30, 136, 229, 0.15);
+}
+.faq-question {
+    padding: 20px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    transition: background 0.3s ease;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+.faq-question:hover {
+    background: #f8faff;
+}
+.faq-question .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: var(--primary-color);
+}
+.faq-item.active .faq-question .icon {
+    background: var(--primary-color);
+    color: white;
+    transform: rotate(180deg);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: #fafafa;
+}
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+.faq-answer-content {
+    padding: 0 25px 20px 25px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+.faq-answer-content ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+.faq-answer-content li {
+    margin-bottom: 8px;
+}
+.faq-answer-content strong {
+    color: var(--primary-dark);
+}
+.highlight-box {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+    border-left: 4px solid var(--primary-color);
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+}
+.highlight-box.warning {
+    background: linear-gradient(135deg, #fff3e0 0%, #fce4ec 100%);
+    border-left-color: #ff9800;
+}
+.highlight-box.info {
+    background: linear-gradient(135deg, #e8f5e9 0%, #e0f2f1 100%);
+    border-left-color: #4caf50;
+}
+.contact-box {
+    background: linear-gradient(135deg, #c92077 0%, #e91e63 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 40px 0;
+    text-align: center;
+}
+.contact-box h3 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.contact-box p {
+    margin-bottom: 10px;
+}
+.contact-box i {
+    margin-right: 8px;
+}
+</style>
+</head>
+<body>
+<header id="atIdViewHeader" class="site-header">
+<div class="header-wrapper">
+<nav class="site-nav">
+<a class="site-logo-link" href="index.html">
+<img src="d4210c45aec02871569eec3c329acee3.jpg" class="site-logo-img" alt="VS2T Logo">
+</a>
+<a class="site-hotline" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">HOTLINE: 19003667</a>
+<ul class="nav-menu">
+<li><a class="nav-link" href="index.html">Trang chủ</a></li>
+<li class="nav-dropdown">
+<a class="nav-link" href="Tour miền Bắc.html">Tour miền Bắc</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-link" href="Hà Nội.html">Hà Nội</a></li>
+<li><a class="dropdown-link" href="Hạ Long.html">Hạ Long</a></li>
+<li><a class="dropdown-link" href="Hà Giang.html">Hà Giang</a></li>
+</ul>
+</li>
+<li class="nav-dropdown">
+<a class="nav-link" href="Tour miền Trung.html">Tour miền Trung</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-link" href="Đà Nẵng.html">Đà Nẵng</a></li>
+<li><a class="dropdown-link" href="Huế.html">Huế</a></li>
+<li><a class="dropdown-link" href="Phan Thiết.html">Phan Thiết</a></li>
+</ul>
+</li>
+<li class="nav-dropdown">
+<a class="nav-link" href="Tour miền Nam.html">Tour miền Nam</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-link" href="Sài Gòn.html">Sài Gòn</a></li>
+<li><a class="dropdown-link" href="Vũng Tàu.html">Vũng Tàu</a></li>
+<li><a class="dropdown-link" href="Tây Ninh.html">Tây Ninh</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="Vé máy bay.html">Vé máy bay</a></li>
+<li><a class="nav-link" href="Đặt phòng.html">Đặt phòng</a></li>
+<li><a class="nav-link" href="Mua sắm.html">Mua sắm</a></li>
+<li><a class="nav-link" href="Giới thiệu.html">Giới thiệu</a></li>
+<li><a class="nav-link nav-cart" href="GIỎ HÀNG.html">🛒 Giỏ hàng</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<main class="main-content">
+<div class="policy-hero">
+    <h1><i class="fas fa-file-contract"></i> Chính sách đặt tour</h1>
+    <p>Tìm hiểu các thông tin quan trọng về quy trình đặt tour, thanh toán, hủy tour và các chính sách hỗ trợ khách hàng của VS2T Travel</p>
+</div>
+
+<div class="policy-container">
+    <div class="policy-section-title">
+        <i class="fas fa-calendar-check"></i> Quy trình đặt tour
+    </div>
+    
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Làm thế nào để đặt tour trên website VS2T Travel?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Để đặt tour trên VS2T Travel, bạn thực hiện các bước sau:</p>
+                <ul>
+                    <li><strong>Bước 1:</strong> Truy cập trang chủ và chọn tour mong muốn hoặc tìm kiếm theo địa điểm, ngày khởi hành.</li>
+                    <li><strong>Bước 2:</strong> Chọn ngày khởi hành, số lượng khách và các dịch vụ bổ sung (nếu có).</li>
+                    <li><strong>Bước 3:</strong> Điền thông tin liên hệ bao gồm: Họ tên, số điện thoại, email.</li>
+                    <li><strong>Bước 4:</strong> Chọn phương thức thanh toán phù hợp.</li>
+                    <li><strong>Bước 5:</strong> Xác nhận đặt tour và nhận mã đặt tour qua email/SMS.</li>
+                </ul>
+                <div class="highlight-box info">
+                    <i class="fas fa-info-circle"></i> <strong>Lưu ý:</strong> Sau khi đặt tour thành công, nhân viên VS2T sẽ liên hệ xác nhận trong vòng 30 phút trong giờ hành chính.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Tôi có cần đăng ký tài khoản để đặt tour không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Không bắt buộc. Bạn có thể đặt tour với tư cách khách vãng lai bằng cách điền thông tin liên hệ trực tiếp. Tuy nhiên, việc đăng ký tài khoản mang lại nhiều lợi ích:</p>
+                <ul>
+                    <li>Lưu trữ thông tin đặt tour để theo dõi dễ dàng</li>
+                    <li>Nhận các ưu đãi độc quyền cho thành viên</li>
+                    <li>Tích điểm thưởng cho mỗi lần đặt tour</li>
+                    <li>Nhận thông báo về các chương trình khuyến mãi sớm nhất</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Làm thế nào để biết tour còn chỗ hay đã hết chỗ?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Thông tin số lượng chỗ còn trống được hiển thị trực tiếp trên trang chi tiết tour. Khi bạn chọn ngày khởi hành, hệ thống sẽ hiển thị:</p>
+                <ul>
+                    <li><strong>Còn chỗ:</strong> Với số lượng cụ thể (ví dụ: "Còn 5 chỗ")</li>
+                    <li><strong>Giới hạn:</strong> Chỉ còn ít chỗ, nên đặt sớm</li>
+                    <li><strong>Hết chỗ:</strong> Không thể đặt online, vui lòng liên hệ hotline</li>
+                </ul>
+                <div class="highlight-box warning">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>Khuyến nghị:</strong> Nên đặt tour sớm ít nhất 3-5 ngày trước ngày khởi hành để đảm bảo có chỗ, đặc biệt vào mùa cao điểm và các ngày lễ.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="policy-section-title">
+        <i class="fas fa-credit-card"></i> Thanh toán
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Các phương thức thanh toán được chấp nhận là gì?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>VS2T Travel chấp nhận nhiều phương thức thanh toán linh hoạt:</p>
+                <ul>
+                    <li><strong>Thanh toán trực tiếp:</strong> Tại văn phòng VS2T hoặc các điểm giao dịch</li>
+                    <li><strong>Chuyển khoản ngân hàng:</strong> Chuyển tiền qua tài khoản ngân hàng của VS2T</li>
+                    <li><strong>Thẻ tín dụng/Ghi nợ:</strong> Visa, MasterCard, JCB</li>
+                    <li><strong>Thanh toán online:</strong> Qua cổng thanh toán VNPAY, MoMo, ZaloPay</li>
+                    <li><strong>Trả góp:</strong> Hỗ trợ trả góp 0% lãi suất qua thẻ tín dụng</li>
+                </ul>
+                <div class="highlight-box">
+                    <i class="fas fa-lock"></i> <strong>Bảo mật:</strong> Tất cả giao dịch thanh toán được mã hóa và bảo mật theo tiêu chuẩn quốc tế PCI-DSS.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Tôi cần thanh toán bao nhiêu % giá tour khi đặt?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Chính sách thanh toán theo đợt như sau:</p>
+                <ul>
+                    <li><strong>Đặt cọc:</strong> 30% giá tour để xác nhận đặt chỗ</li>
+                    <li><strong>Thanh toán còn lại:</strong> 70% giá tour trước ngày khởi hành tối thiểu 7 ngày</li>
+                </ul>
+                <p><strong>Lưu ý quan trọng:</strong></p>
+                <ul>
+                    <li>Với các tour trong mùa cao điểm hoặc ngày lễ, có thể yêu cầu đặt cọc 50%</li>
+                    <li>Đặt tour gấp trong vòng 7 ngày trước khởi hành cần thanh toán 100%</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Làm sao để xác nhận thanh toán thành công?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Sau khi thanh toán, bạn sẽ nhận được xác nhận qua:</p>
+                <ul>
+                    <li><strong>Email:</strong> Hóa đơn điện tử và xác nhận đặt tour gửi đến email đăng ký</li>
+                    <li><strong>SMS:</strong> Tin nhắn xác nhận mã đặt tour qua số điện thoại</li>
+                    <li><strong>Kiểm tra online:</strong> Truy cập mục "Tra cứu đặt tour" trên website</li>
+                </ul>
+                <p>Nếu không nhận được xác nhận sau 30 phút, vui lòng liên hệ hotline 19003667 để được hỗ trợ.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="policy-section-title">
+        <i class="fas fa-calendar-times"></i> Chính sách hủy tour & hoàn tiền
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Chính sách hủy tour được tính như thế nào?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Chính sách hủy tour tại VS2T Travel được áp dụng như sau:</p>
+                <ul>
+                    <li><strong>Hủy trước 15 ngày</strong> trở lên trước ngày khởi hành: Hoàn 100% tiền đặt cọc (trừ phí dịch vụ 50.000đ)</li>
+                    <li><strong>Hủy từ 8-14 ngày</strong> trước ngày khởi hành: Hoàn 50% tiền đặt cọc</li>
+                    <li><strong>Hủy từ 4-7 ngày</strong> trước ngày khởi hành: Hoàn 20% tiền đặt cọc</li>
+                    <li><strong>Hủy dưới 3 ngày</strong> trước ngày khởi hành: Không hoàn tiền</li>
+                </ul>
+                <div class="highlight-box warning">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>Lưu ý:</strong> Thời gian tính theo ngày làm việc, không tính thứ 7, chủ nhật và ngày lễ.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Tôi có thể đổi ngày khởi hành được không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Có, VS2T Travel hỗ trợ đổi ngày khởi hành với các điều kiện sau:</p>
+                <ul>
+                    <li><strong>Đổi trước 10 ngày</strong> trước ngày khởi hành ban đầu: Miễn phí đổi (nếu có tour cùng mức giá)</li>
+                    <li><strong>Đổi trước 5-9 ngày:</strong> Phí đổi 100.000đ/người</li>
+                    <li><strong>Đổi dưới 5 ngày:</strong> Áp dụng chính sách hủy tour</li>
+                </ul>
+                <p>Nếu tour mới có giá cao hơn, khách hàng thanh toán phần chênh lệch. Nếu giá thấp hơn, VS2T sẽ hoàn lại phần chênh lệch.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Tiền hoàn sẽ được hoàn như thế nào và trong bao lâu?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Tiền hoàn sẽ được xử lý theo phương thức thanh toán ban đầu:</p>
+                <ul>
+                    <li><strong>Thẻ tín dụng/Ghi nợ:</strong> Hoàn về thẻ trong 7-15 ngày làm việc</li>
+                    <li><strong>Chuyển khoản ngân hàng:</strong> Hoàn về tài khoản trong 5-7 ngày làm việc</li>
+                    <li><strong>Tiền mặt:</strong> Nhận tại văn phòng hoặc chuyển khoản trong 3-5 ngày</li>
+                </ul>
+                <div class="highlight-box info">
+                    <i class="fas fa-clock"></i> <strong>Thời gian xử lý:</strong> Sau khi xác nhận hủy tour thành công, VS2T sẽ hoàn tiền trong vòng 7 ngày làm việc (không tính thứ 7, chủ nhật và ngày lễ).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="policy-section-title">
+        <i class="fas fa-plane-departure"></i> Tour & Dịch vụ
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Giá tour đã bao gồm những gì?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Giá tour VS2T Travel bao gồm các dịch vụ cơ bản sau:</p>
+                <ul>
+                    <li><strong>Di chuyển:</strong> Xe du lịch điều hòa theo lịch trình (hoặc máy bay nếu ghi rõ)</li>
+                    <li><strong>Lưu trú:</strong> Khách sạn 3-5 sao tùy loại tour (phòng đôi/twin)</li>
+                    <li><strong>Ăn uống:</strong> Theo chương trình tour (thường là bữa sáng hàng ngày + các bữa chính)</li>
+                    <li><strong>Hướng dẫn viên:</strong> HDV địa phương hoặc HDV du lịch suốt tuyến</li>
+                    <li><strong>Vé tham quan:</strong> Vé vào cổng các điểm du lịch trong chương trình</li>
+                    <li><strong>Bảo hiểm:</strong> Bảo hiểm du lịch trọn gói với mức bồi thường tối thiểu 50.000.000đ</li>
+                </ul>
+                <p><strong>Giá tour không bao gồm:</strong></p>
+                <ul>
+                    <li>Chi phí cá nhân (điện thoại, giặt ủi, minibar...)</li>
+                    <li>Vé tham quan ngoài chương trình</li>
+                    <li>Tip cho hướng dẫn viên và tài xế</li>
+                    <li>Phí xuất nhập cảnh (nếu có tour nước ngoài)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Trẻ em đi tour được tính phí như thế nào?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Chính sách giá tour cho trẻ em tại VS2T Travel:</p>
+                <ul>
+                    <li><strong>Trẻ em dưới 2 tuổi:</strong> Miễn phí (ngồi cùng cha mẹ, không có giường riêng)</li>
+                    <li><strong>Trẻ em từ 2-5 tuổi:</strong> 50% giá tour người lớn (có giường riêng)</li>
+                    <li><strong>Trẻ em từ 6-11 tuổi:</strong> 75% giá tour người lớn (có giường riêng)</li>
+                    <li><strong>Trẻ em từ 12 tuổi trở lên:</strong> Tính như người lớn (100% giá tour)</li>
+                </ul>
+                <div class="highlight-box">
+                    <i class="fas fa-user-friends"></i> <strong>Lưu ý:</strong> Mỗi người lớn chỉ được kèm theo tối đa 1 trẻ em. Trẻ em thứ 2 trở đi sẽ tính theo giá người lớn.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Tôi có thể yêu cầu phòng đơn/phòng twin không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Có, VS2T Travel chấp nhận các yêu cầu đặc biệt về phòng:</p>
+                <ul>
+                    <li><strong>Phòng đơn (Single):</strong> Phụ thu 30-50% giá tour tùy khách sạn</li>
+                    <li><strong>Phòng twin (2 giường đơn):</strong> Miễn phí (theo cung cấp của khách sạn)</li>
+                    <li><strong>Phòng double (1 giường đôi):</strong> Tiêu chuẩn của tour</li>
+                    <li><strong>Phòng triple/Family:</strong> Có thể đặt với phụ thu phù hợp</li>
+                </ul>
+                <p>Chúng tôi sẽ cố gắng đáp ứng yêu cầu nhưng không đảm bảo 100% vì còn tùy thuộc vào tình trạng phòng trống của khách sạn tại thời điểm đặt.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="policy-section-title">
+        <i class="fas fa-headset"></i> Hỗ trợ & Liên hệ
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Nếu gặp sự cố trong tour, tôi cần liên hệ ai?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Khi gặp sự cố trong tour, bạn có thể liên hệ theo các cách sau:</p>
+                <ul>
+                    <li><strong>Hotline hỗ trợ 24/7:</strong> 19003667</li>
+                    <li><strong>Zalo:</strong> 0909xxxxxx (hỗ trợ nhanh)</li>
+                    <li><strong>Email:</strong> support@vs2t.com.vn</li>
+                    <li><strong>Liên hệ trực tiếp:</strong> HDV đi cùng hoặc đại diện VS2T tại địa phương</li>
+                </ul>
+                <div class="highlight-box info">
+                    <i class="fas fa-phone-alt"></i> <strong>Trong trường hợp khẩn cấp:</strong> Gọi hotline 19003667 nhánh 1 để được hỗ trợ ngay lập tức.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>VS2T Travel có chính sách bảo hành dịch vụ không?</span>
+            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Có, VS2T Travel cam kết chất lượng dịch vụ với chính sách bảo hành:</p>
+                <ul>
+                    <li><strong>Đảm bảo đúng lịch trình:</strong> Nếu VS2T thay đổi lịch trình không có lý do chính đáng, sẽ hoàn tiền 20% giá tour</li>
+                    <li><strong>Đảm bảo chất lượng khách sạn:</strong> Nếu khách sạn thực tế khác với thông tin đã đặt, VS2T sẽ đền bù hoặc nâng cấp</li>
+                    <li><strong>Khiếu nại dịch vụ:</strong> Tiếp nhận khiếu nại trong vòng 24h sau khi kết thúc tour và phản hồi trong 3 ngày làm việc</li>
+                </ul>
+                <p>Chúng tôi luôn nỗ lực để mang đến trải nghiệm du lịch tốt nhất cho quý khách.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-box">
+        <h3><i class="fas fa-life-ring"></i> Bạn cần hỗ trợ thêm?</h3>
+        <p><i class="fas fa-phone"></i> Hotline: <strong>19003667</strong></p>
+        <p><i class="fas fa-envelope"></i> Email: support@vs2t.com.vn</p>
+        <p><i class="fas fa-clock"></i> Giờ làm việc: 24/7</p>
+    </div>
+</div>
+</main>
+
+<footer class="vs2t-footer">
+    <div class="footer-services">
+        <a class="service-box pink" href="#">
+            <i class="fas fa-hotel"></i>
+            <div>
+                <span class="service-title">KHÁCH SẠN</span>
+                <p>Khách sạn tốt nhất tại các địa điểm du lịch nổi tiếng.</p>
+            </div>
+        </a>
+        <a class="service-box blue" href="Mua sắm.html">
+            <i class="fas fa-shopping-cart"></i>
+            <div>
+                <span class="service-title">MUA SẮM</span>
+                <p>Đa dạng sản phẩm, quà tặng du lịch chất lượng cao.</p>
+            </div>
+        </a>
+        <a class="service-box orange" href="GIỎ HÀNG.html">
+            <i class="fas fa-shopping-bag"></i>
+            <div>
+                <span class="service-title">GIỎ HÀNG</span>
+                <p>Xem lại và thanh toán đơn hàng của bạn.</p>
+            </div>
+        </a>
+        <a class="service-box teal" href="Vé máy bay.html">
+            <i class="fas fa-plane"></i>
+            <div>
+                <span class="service-title">VÉ MÁY BAY</span>
+                <p>Vé máy bay giá rẻ nhất, nhiều khuyến mãi hấp dẫn.</p>
+            </div>
+        </a>
+    </div>
+    <div class="footer-navigation">
+        <div class="nav-column">
+            <h4>Du lịch miền Bắc</h4>
+            <ul>
+                <li><a href="Hà Nội.html">Du lịch Hà Nội</a></li>
+                <li><a href="Hạ Long.html">Du lịch Hạ Long</a></li>
+                <li><a href="Hà Giang.html">Du lịch Hà Giang</a></li>
+            </ul>
+        </div>
+        <div class="nav-column">
+            <h4>Du lịch miền Trung</h4>
+            <ul>
+                <li><a href="Đà Nẵng.html">Du lịch Đà Nẵng</a></li>
+                <li><a href="Huế.html">Du lịch Huế</a></li>
+                <li><a href="Phan Thiết.html">Du lịch Phan Thiết</a></li>
+            </ul>
+        </div>
+        <div class="nav-column">
+            <h4>Du lịch miền Nam</h4>
+            <ul>
+                <li><a href="Sài Gòn.html">Du lịch Sài Gòn</a></li>
+                <li><a href="Vũng Tàu.html">Du lịch Vũng Tàu</a></li>
+                <li><a href="Tây Ninh.html">Du lịch Tây Ninh</a></li>
+            </ul>
+        </div>
+        <div class="nav-column">
+            <h4>Dịch vụ</h4>
+            <ul>
+                <li><a href="Vé máy bay.html">Vé máy bay</a></li>
+                <li><a href="Đặt phòng.html">Đặt phòng khách sạn</a></li>
+                <li><a href="Mua sắm.html">Mua sắm</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-main">
+        <div class="company-info">
+            <h3>CÔNG TY CỔ PHẦN TRUYỀN THÔNG DU LỊCH VS2T</h3>
+            <p><strong>Địa chỉ :</strong> 235 Nguyễn Văn Cừ, phường Chợ Quán, TPHCM.</p>
+            <p><strong>Văn phòng :</strong> D202</p>
+            <p><strong>Điện thoại :</strong> 0936 676767 | <strong>Hotline :</strong> 1900 3667</p>
+            <p><strong>Website :</strong> vs2t .com.vn | <strong>Email :</strong> info@vs2tcom.vn</p>
+        </div>
+
+        <div class="customer-corner">
+            <h4>Góc khách hàng</h4>
+            <ul>
+                <li><a href="Chính sách đặt tour.html">Chính sách đặt tour</a></li>
+                <li><a href="Chính sách bảo mật.html">Chính sách bảo mật</a></li>
+                <li><a href="Phiếu góp ý.html">Ý kiến khách hàng</a></li>
+                <li><a href="Phiếu góp ý.html">Phiếu góp ý</a></li>
+            </ul>
+        </div>
+
+        <div class="newsletter">
+            <h4>Đăng ký nhận thông tin khuyến mãi</h4>
+            <div class="email-box">
+                <input type="email" placeholder="Email của bạn">
+                <button><i class="fas fa-envelope"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="license">
+            <p>GIẤY PHÉP KINH DOANH DỊCH VỤ LỮ HÀNH QUỐC TẾ</p>
+            <p>Số GP/ No: 79-042/2026/ TCDL - GP LHQT</p>
+        </div>
+        <div class="social-links">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+        <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+        </div>
+    </div>
+    <div class="copyright">
+        Copyright © 2026 <strong>VS2T</strong>. Ghi rõ nguồn "vs2t.com.vn" khi sử dụng thông tin từ website này.
+    </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        document.querySelectorAll('.faq-item').forEach(faq => {
+            faq.classList.remove('active');
+        });
+        
+        if (!isActive) {
+            item.classList.add('active');
+        }
+    });
+});
+</script>
+</body>
+</html>

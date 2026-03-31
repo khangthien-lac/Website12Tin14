@@ -13,7 +13,7 @@
 <a class="site-logo-link" href="index.html">
 <img src="d4210c45aec02871569eec3c329acee3.jpg" class="site-logo-img" alt="VS2T Logo">
 </a>
-<a class="site-hotline" href="tel:19003667">HOTLINE: 19003667</a>
+<a class="site-hotline" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">HOTLINE: 19003667</a>
 <ul class="nav-menu">
 <li><a class="nav-link" href="index.html">Trang chủ</a></li>
 <li class="nav-dropdown">
@@ -61,10 +61,6 @@
         <div class="field" style="min-width:320px;">
           <label for="destSelect" style="font-weight:600; display:block;">Điểm đến</label>
           <select id="destSelect" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;"></select>
-        </div>
-        <div class="field" style="min-width:320px;">
-          <label for="timeInput" style="font-weight:600; display:block;">Giờ đi</label>
-          <input type="time" id="timeInput" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;" value="08:00">
         </div>
       </div>
       <div id="pricePanel" style="text-align:center; margin:12px 0; display:none;">
@@ -121,20 +117,56 @@
   </main>
 
   <script>
-    // Inline dataset (no external flight.json)
-    const flights = [
-      { id:1, flight_code:'VN101', origin:'Hà Nội', destination:'Đà Nẵng', departure_time:'08:00', arrival_time:'09:45', duration_min:105, duration:'1h 45m', price:850000, stops:0, airline:'Vietnam Airlines', aircraft:'Airbus A321'},
-      { id:2, flight_code:'VN102', origin:'Hồ Chí Minh', destination:'Hà Nội', departure_time:'07:30', arrival_time:'09:40', duration_min:130, duration:'2h 10m', price:1200000, stops:0, airline:'Vietnam Airlines', aircraft:'Boeing 787'},
-      { id:3, flight_code:'VN103', origin:'Hà Nội', destination:'Phú Quốc', departure_time:'09:00', arrival_time:'11:30', duration_min:150, duration:'2h 30m', price:1800000, stops:0, airline:'Vietnam Airlines', aircraft:'Airbus A321neo'},
-      { id:4, flight_code:'VN104', origin:'Đà Nẵng', destination:'Nha Trang', departure_time:'10:15', arrival_time:'11:30', duration_min:75, duration:'1h 15m', price:650000, stops:0, airline:'VietJet Air', aircraft:'Airbus A320'},
-      { id:5, flight_code:'VN105', origin:'Hà Nội', destination:'Huế', departure_time:'12:00', arrival_time:'12:40', duration_min:40, duration:'0h 40m', price:600000, stops:0, airline:'Vietnam Airlines', aircraft:'ATR 72'}
+    const PRICE_PER_ADULT = 1000000;
+    const PRICE_PER_CHILD = 750000;  // 75% giá người lớn
+    const PRICE_PER_INFANT = 100000; // 10% giá người lớn
+
+    // Danh sách tỉnh hỗ trợ
+    const provinces = [
+      'Hà Nội', 'Hạ Long', 'Hà Giang', 'Huế', 'Đà Nẵng', 
+      'Phan Thiết', 'TPHCM', 'Vũng Tàu', 'Tây Ninh'
     ];
+
+    // Thông tin sân bay và phụ phí xe trung chuyển
+    const AIRPORTS = {
+      'Hà Nội': { airport: 'Nội Bài', hasAirport: true, transferFee: 0 },
+      'Hạ Long': { airport: 'Vân Đồn', hasAirport: true, transferFee: 0 },
+      'Hà Giang': { airport: 'Nội Bài', hasAirport: false, transferFee: 350000, note: 'Xe trung chuyển từ Nội Bài (Hà Nội)' },
+      'Huế': { airport: 'Phú Bài', hasAirport: true, transferFee: 0 },
+      'Đà Nẵng': { airport: 'Đà Nẵng', hasAirport: true, transferFee: 0 },
+      'Phan Thiết': { airport: 'Cam Ranh', hasAirport: false, transferFee: 250000, note: 'Xe trung chuyển từ Cam Ranh (Nha Trang)' },
+      'TPHCM': { airport: 'Tân Sơn Nhất', hasAirport: true, transferFee: 0 },
+      'Vũng Tàu': { airport: 'Tân Sơn Nhất', hasAirport: false, transferFee: 150000, note: 'Xe trung chuyển từ Tân Sơn Nhất (TPHCM)' },
+      'Tây Ninh': { airport: 'Tân Sơn Nhất', hasAirport: false, transferFee: 180000, note: 'Xe trung chuyển từ Tân Sơn Nhất (TPHCM)' }
+    };
+
+    function formatVND(n){
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 }).format(n);
+    }
+
+    function showToast(msg){
+      // Tạo toast nếu chưa có
+      let el = document.getElementById('toast');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'toast';
+        el.className = 'toast';
+        el.setAttribute('aria-live', 'polite');
+        el.style.cssText = 'display:none; position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#333; color:#fff; padding:14px 28px; border-radius:8px; font-size:14px; z-index:10000; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition:opacity 0.3s ease;';
+        document.body.appendChild(el);
+      }
+      el.textContent = msg;
+      el.style.display = 'block';
+      el.style.opacity = '1';
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => { el.style.display = 'none'; }, 300);
+      }, 2000);
+    }
 
     // Populate origin and destination selects
     const originSelect = document.getElementById('originSelect');
     const destSelect = document.getElementById('destSelect');
-    const origins = [...new Set(flights.map(f => f.origin))].sort();
-    const destinations = [...new Set(flights.map(f => f.destination))].sort();
 
     function fillSelect(select, items, placeholder) {
       select.innerHTML = '';
@@ -150,126 +182,143 @@
       });
     }
 
-    fillSelect(originSelect, origins, 'Chọn tỉnh đi');
-    fillSelect(destSelect, destinations, 'Chọn tỉnh đến');
+    fillSelect(originSelect, provinces, 'Chọn điểm đi');
+    fillSelect(destSelect, provinces, 'Chọn điểm đến');
 
     // State
-    let basePrice = null; // base price per adult (VND) for selected route
-    let timeMultiplier = 1.0;
-    let currentCounts = { adults: 1, children: 0, infants: 0 };
+    let totalPrice = null;
 
-    // Helper to get cheapest flight price for a given origin-dest pair
-    function getBasePriceForRoute(origin, dest) {
-      const matching = flights.filter(f => f.origin === origin && f.destination === dest);
-      if (matching.length === 0) return null;
-      // choose cheapest base price
-      return matching.reduce((min, f) => (f.price < min.price ? f : min), matching[0]).price;
-    }
-
-    // Compute time multiplier based on selected time
-    function computeTimeMultiplier() {
-      const timeStr = document.getElementById('timeInput').value; // format "HH:MM"
-      if (!timeStr) return 1.0;
-      const [hourStr, minuteStr] = timeStr.split(':');
-      const hour = parseInt(hourStr, 10);
-      // Peak: 6-9 (inclusive of 6, exclusive of 9) and 16-19
-      if ((hour >= 6 && hour < 9) || (hour >= 16 && hour < 19)) {
-        return 1.2;
-      }
-      // Off-peak
-      return 1.0;
-    }
-
-    // Update base price when origin or destination changes
-    function updateBasePrice() {
-      const origin = originSelect.value;
-      const dest = destSelect.value;
-      if (!origin || !dest) {
-        basePrice = null;
-        document.getElementById('pricePanel').style.display = 'none';
-        document.getElementById('placeBooking').style.display = 'none';
-        return;
-      }
-      const price = getBasePriceForRoute(origin, dest);
-      if (price === null) {
-        basePrice = null;
-        document.getElementById('priceLabel').textContent = 'Không có tuyến bay';
-        document.getElementById('pricePanel').style.display = 'block';
-        document.getElementById('placeBooking').style.display = 'none';
-        return;
-      }
-      basePrice = price;
-      // Update displayed base price
-      document.getElementById('priceLabel').textContent = `Giá cơ bản: ${basePrice.toLocaleString('vi-VN')} đ`;
-      document.getElementById('pricePanel').style.display = 'block';
-      // Trigger price recalculation
-      updatePrice();
-    }
-
-    // Update price per adult and total based on base price, time multiplier, and passenger counts
+    // Update UI - cập nhật liên tục
     function updatePrice() {
       const pricePanel = document.getElementById('pricePanel');
       const placeBooking = document.getElementById('placeBooking');
-      if (basePrice === null) {
+      const origin = originSelect.value;
+      const dest = destSelect.value;
+      
+      if (!origin || !dest) {
+        totalPrice = null;
         pricePanel.style.display = 'none';
         placeBooking.style.display = 'none';
         return;
       }
-      timeMultiplier = computeTimeMultiplier();
-      const pricePerAdult = basePrice * timeMultiplier;
+      
+      if (origin === dest) {
+        totalPrice = null;
+        document.getElementById('priceLabel').textContent = 'Điểm đi và điểm đến không được trùng nhau!';
+        pricePanel.style.display = 'block';
+        placeBooking.style.display = 'none';
+        return;
+      }
+      
       const a = parseInt(document.getElementById('adults').value) || 1;
       const c = parseInt(document.getElementById('children').value) || 0;
       const i = parseInt(document.getElementById('infants').value) || 0;
-      currentCounts = { adults: a, children: c, infants: i };
-      const total = pricePerAdult * (a + 0.75 * c + 0.1 * i);
-      // Update label to show base price, time factor, and total
-      const timeLabel = timeMultiplier === 1.2 ? '(giờ cao điểm)' : timeMultiplier === 1.0 ? '(giờ thường)' : '(giờ off‑peak)';
-      document.getElementById('priceLabel').textContent = `Giá cơ bản: ${basePrice.toLocaleString('vi-VN')} đ ${timeLabel} | Tổng ước tính: ${total.toLocaleString('vi-VN')} đ`;
+      
+      // Tính giá vé
+      const ticketPrice = (a * PRICE_PER_ADULT) + (c * PRICE_PER_CHILD) + (i * PRICE_PER_INFANT);
+      
+      // Lấy thông tin sân bay và phụ phí
+      const originInfo = AIRPORTS[origin];
+      const destInfo = AIRPORTS[dest];
+      const transferFeeOrigin = originInfo.transferFee || 0;
+      const transferFeeDest = destInfo.transferFee || 0;
+      const totalTransferFee = transferFeeOrigin + transferFeeDest;
+      
+      totalPrice = ticketPrice + totalTransferFee;
+      
+      // Tạo nội dung hiển thị
+      let html = `✈️ ${origin} (${originInfo.airport}) → ${dest} (${destInfo.airport})<br>`;
+      html += `💰 Giá vé: ${formatVND(ticketPrice)}`;
+      html += ` (Người lớn: ${a} × ${formatVND(PRICE_PER_ADULT)}`;
+      if (c > 0) html += ` | Trẻ em: ${c} × ${formatVND(PRICE_PER_CHILD)}`;
+      if (i > 0) html += ` | Em bé: ${i} × ${formatVND(PRICE_PER_INFANT)}`;
+      html += `)`;
+      
+      // Hiển thị phụ phí xe trung chuyển nếu có
+      if (totalTransferFee > 0) {
+        html += `<br>🚐 Phụ phí xe trung chuyển: ${formatVND(totalTransferFee)}`;
+        if (!originInfo.hasAirport && originInfo.note) {
+          html += `<br>&nbsp;&nbsp;• ${origin}: ${originInfo.note}`;
+        }
+        if (!destInfo.hasAirport && destInfo.note) {
+          html += `<br>&nbsp;&nbsp;• ${dest}: ${destInfo.note}`;
+        }
+      }
+      
+      html += `<br><strong>💵 Tổng cộng: ${formatVND(totalPrice)}</strong>`;
+      
+      document.getElementById('priceLabel').innerHTML = html;
       pricePanel.style.display = 'block';
       placeBooking.style.display = 'inline-block';
     }
 
-    // Event listeners
-    originSelect.addEventListener('change', updateBasePrice);
-    destSelect.addEventListener('change', updateBasePrice);
-    document.getElementById('timeInput').addEventListener('change', updatePrice);
+    // Event listeners - cập nhật liên tục khi thay đổi
+    originSelect.addEventListener('change', updatePrice);
+    destSelect.addEventListener('change', updatePrice);
     document.getElementById('adults').addEventListener('change', updatePrice);
     document.getElementById('children').addEventListener('change', updatePrice);
     document.getElementById('infants').addEventListener('change', updatePrice);
 
     // Place booking
     document.getElementById('placeBooking').addEventListener('click', function() {
-      if (basePrice === null) {
-        alert('Vui lòng chọn đúng điểm đi và điểm đến có tuyến bay.');
-        return;
-      }
       const origin = originSelect.value;
       const dest = destSelect.value;
-      const pricePerAdult = basePrice * computeTimeMultiplier(); // recompute to be safe
+      
+      if (!origin || !dest) {
+        showToast('Vui lòng chọn điểm đi và điểm đến.');
+        return;
+      }
+      
+      if (origin === dest) {
+        showToast('Điểm đi và điểm đến không được trùng nhau!');
+        return;
+      }
+      
       const a = parseInt(document.getElementById('adults').value) || 1;
       const c = parseInt(document.getElementById('children').value) || 0;
       const i = parseInt(document.getElementById('infants').value) || 0;
-      const cart = JSON.parse(localStorage.getItem('flightCart') || '[]');
-      cart.push({
+      
+      if (a < 1) {
+        showToast('Số lượng người lớn tối thiểu là 1.');
+        return;
+      }
+      
+      const originInfo = AIRPORTS[origin];
+      const destInfo = AIRPORTS[dest];
+      
+      const item = {
         id: Date.now(),
+        flight_code: 'FLIGHT-' + Date.now(),
         origin,
+        originAirport: originInfo.airport,
         destination: dest,
-        price: pricePerAdult, // price per adult after time multiplier
+        destinationAirport: destInfo.airport,
+        ticketPrice: (a * PRICE_PER_ADULT) + (c * PRICE_PER_CHILD) + (i * PRICE_PER_INFANT),
+        transferFee: (originInfo.transferFee || 0) + (destInfo.transferFee || 0),
+        price: totalPrice,
         adults: a,
         children: c,
-        infants: i
-      });
+        infants: i,
+        timestamp: new Date().toISOString()
+      };
+      
+      let cart = [];
+      try {
+        cart = JSON.parse(localStorage.getItem('flightCart') || '[]');
+      } catch(e) { cart = []; }
+      cart.push(item);
       localStorage.setItem('flightCart', JSON.stringify(cart));
-      alert('Đã thêm vé vào giỏ hàng.');
+      
+      showToast('Đã thêm vé vào giỏ hàng!');
+      
       // Reset form
       originSelect.value = '';
       destSelect.value = '';
-      document.getElementById('timeInput').value = '08:00';
       document.getElementById('adults').value = '1';
       document.getElementById('children').value = '0';
       document.getElementById('infants').value = '0';
-      basePrice = null;
-      updateBasePrice(); // will hide price panel and button
+      totalPrice = null;
+      updatePrice();
     });
   </script>
 
@@ -279,28 +328,28 @@
         <a class="service-box pink" href="#">
             <i class="fas fa-hotel"></i>
             <div>
-                <span class="title">KHÁCH SẠN</span>
+                <span class="service-title">KHÁCH SẠN</span>
                 <p>Khách sạn tốt nhất tại các địa điểm du lịch nổi tiếng.</p>
             </div>
         </a>
         <a class="service-box blue" href="Mua sắm.html">
             <i class="fas fa-shopping-cart"></i>
             <div>
-                <span class="title">MUA SẮM</span>
+                <span class="service-title">MUA SẮM</span>
                 <p>Đa dạng sản phẩm, quà tặng du lịch chất lượng cao.</p>
             </div>
         </a>
         <a class="service-box orange" href="GIỎ HÀNG.html">
             <i class="fas fa-shopping-bag"></i>
             <div>
-                <span class="title">GIỎ HÀNG</span>
+                <span class="service-title">GIỎ HÀNG</span>
                 <p>Xem lại và thanh toán đơn hàng của bạn.</p>
             </div>
         </a>
         <a class="service-box teal" href="Vé máy bay.html">
             <i class="fas fa-plane"></i>
             <div>
-                <span class="title">VÉ MÁY BAY</span>
+                <span class="service-title">VÉ MÁY BAY</span>
                 <p>Vé máy bay giá rẻ nhất, nhiều khuyến mãi hấp dẫn.</p>
             </div>
         </a>
@@ -347,10 +396,10 @@
         <div class="customer-corner">
             <h4>Góc khách hàng</h4>
             <ul>
-                <li>Chính sách đặt tour</li>
-                <li>Chính sách bảo mật</li>
-                <li>Ý kiến khách hàng</li>
-                <li>Phiếu góp ý</li>
+                <li><a href="Chính sách đặt tour.html">Chính sách đặt tour</a></li>
+                <li><a href="Chính sách bảo mật.html">Chính sách bảo mật</a></li>
+                <li><a href="Phiếu góp ý.html">Ý kiến khách hàng</a></li>
+                <li><a href="Phiếu góp ý.html">Phiếu góp ý</a></li>
             </ul>
         </div>
 

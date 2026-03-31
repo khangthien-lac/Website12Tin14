@@ -51,6 +51,49 @@ function showNotification(msg) {
   box._timer = setTimeout(() => (box.style.opacity = "0"), 2500);
 }
 
+function getTotalCartCount() {
+  let total = 0;
+  try {
+    const tourCart = JSON.parse(localStorage.getItem("tour_cart") || '{}');
+    for (const id in tourCart) {
+      total += Number(tourCart[id].qty) || 0;
+    }
+  } catch(e) {}
+  try {
+    const hotelCart = JSON.parse(localStorage.getItem("hotel_cart") || '[]');
+    hotelCart.forEach(it => { total += Number(it.qty) || 0; });
+  } catch(e) {}
+  try {
+    const shopCart = JSON.parse(localStorage.getItem("vs2t_cart") || '[]');
+    shopCart.forEach(it => { total += Number(it.qty) || 0; });
+  } catch(e) {}
+  try {
+    const flightCart = JSON.parse(localStorage.getItem("flightCart") || '[]');
+    flightCart.forEach(it => { 
+      total += (Number(it.adults) || 0) + (Number(it.children) || 0) + (Number(it.infants) || 0); 
+    });
+  } catch(e) {}
+  return total;
+}
+
+function updateCartBadge() {
+  const total = getTotalCartCount();
+  document.querySelectorAll('.nav-cart').forEach(navCart => {
+    let badge = navCart.querySelector('.cart-badge');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'cart-badge';
+      badge.style.cssText = 'display:inline-block;background-color:var(--primary-color,#e74c3c);color:#fff;border-radius:50%;padding:2px 6px;font-size:12px;margin-left:6px;';
+      navCart.appendChild(badge);
+    }
+    badge.textContent = total;
+    badge.style.display = total > 0 ? 'inline-block' : 'none';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', updateCartBadge);
+window.addEventListener('storage', updateCartBadge);
+
 // ---- Add to cart (from tour detail pages) ----
 function addToCart(id, name, price) {
   const cart = getCart();
